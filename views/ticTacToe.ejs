@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+</head>
+<style>
+    * body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .container {
+        height: 600px;
+        width: 400px;
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+        margin-left: 720px;
+    }
+
+    .btn {
+        height: 95px;
+        width: 95px;
+        background-color: #1a8cff;
+        font-size: 45px;
+        margin-top: 5px;
+        color: black;
+
+    }
+
+    .btns {
+        height: 500px;
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+    }
+    
+</style>
+
+<body>
+    <div class="title">
+        <h1>Tic Tac Toe Game</h1>
+        <h1>Dharm Patel</h1>
+        <h1>5th Feb 2024</h1>
+        <h1>Employee Id - 24DEV012</h1>
+    </div>
+    <div class="container">
+        <div class="btns" id="box">
+            <button id="1" class="btn"></button>
+            <button id="2" class="btn"></button>
+            <button id="3" class="btn"></button>
+            <button id="4" class="btn"></button>
+            <button id="5" class="btn"></button>
+            <button id="6" class="btn"></button>
+            <button id="7" class="btn"></button>
+            <button id="8" class="btn"></button>
+            <button id="9" class="btn"></button>
+        </div>
+    </div>
+
+    <script>
+        var count = 0;
+        let Xturn = true;
+        let Xclick = [];
+        let Oclick = [];
+        let check = [];
+        const tds = document.getElementsByClassName("btn");
+        for (let i = 0; i < 9; i++) {
+            tds[i].addEventListener("click", clickHandler);
+        }
+        function clickHandler() {
+           
+            let id = event.target.id;
+            if (Xturn) {
+                const cell = document.getElementById(id);
+                cell.innerHTML = "X";
+                cell.removeEventListener("click", clickHandler);
+                Xturn = false;
+                Xclick.push(id);
+                // console.log(Xclick);
+                count++;
+
+            } else {
+                const cell = document.getElementById(id);
+                document.getElementById(id).innerHTML = "O";
+                cell.removeEventListener("click", clickHandler);
+                Xturn = true;
+                Oclick.push(id);
+                console.log(Oclick)
+                count++;
+            }
+            if (count < 9) {
+                if (Oclick.includes("1") && Oclick.includes("2") && Oclick.includes("3") ||
+                    Oclick.includes("4") && Oclick.includes("5") && Oclick.includes("6") ||
+                    Oclick.includes("7") && Oclick.includes("8") && Oclick.includes("9") ||
+                    Oclick.includes("1") && Oclick.includes("4") && Oclick.includes("7") ||
+                    Oclick.includes("2") && Oclick.includes("5") && Oclick.includes("8") ||
+                    Oclick.includes("3") && Oclick.includes("6") && Oclick.includes("9") ||
+                    Oclick.includes("1") && Oclick.includes("5") && Oclick.includes("9") ||
+                    Oclick.includes("3") && Oclick.includes("5") && Oclick.includes("7")) {
+                        document.getElementById("box").innerHTML = "<center><h1>O is Winner!</h1></center>";
+                }
+
+                if (Xclick.includes("1") && Xclick.includes("2") && Xclick.includes("3") ||
+                    Xclick.includes("4") && Xclick.includes("5") && Xclick.includes("6") ||
+                    Xclick.includes("7") && Xclick.includes("8") && Xclick.includes("9") ||
+                    Xclick.includes("1") && Xclick.includes("4") && Xclick.includes("7") ||
+                    Xclick.includes("2") && Xclick.includes("5") && Xclick.includes("8") ||
+                    Xclick.includes("3") && Xclick.includes("6") && Xclick.includes("9") ||
+                    Xclick.includes("1") && Xclick.includes("5") && Xclick.includes("9") ||
+                    Xclick.includes("3") && Xclick.includes("5") && Xclick.includes("7")) {
+                        document.getElementById("box").innerHTML = "<center><h1>X is Winner!</h1></center>";
+                }
+            }
+            else {
+                document.getElementById("box").innerHTML = "<center><h1>Game Draw!</h1></center>";
+            }
+        }
+    </script>
+</body>
+
+</html>

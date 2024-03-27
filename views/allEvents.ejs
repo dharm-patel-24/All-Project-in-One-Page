@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+</head>
+<style>
+    .clr {
+        color:grey;
+    }
+</style>
+<body onload="Onloaded()" onresize="resize()" onhashchange="hashchange()">
+    <table border="1"cellspacing="0" cellpadding="50">
+        <tr>
+            <td class="clr"><a onclick="onclicked()">Onclick</a></td>
+            <td class="clr"><input onblur="onblured()" placeholder="Onblure" size="7"></td>
+            <td class="clr"><a ondblclick="ondouble()">Ondblclick</a></td>
+            <td class="clr"><p ondrag="dragging(event)" draggable="true">Drag me!</p></td>
+        </tr>
+
+        <tr>
+            <td class="clr"><input type="text" onkeypress="onkeypressed()" placeholder="Press any Key"></td>
+            <td class="clr"><input type="text" onkeydown="keydown()" placeholder="Key Down"></td>
+            <td class="clr"><img id="img" onmouseover="bigImg()" onmouseout="normalImg()" border="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAwFBMVEX52yz///8AAAD/4y7/4i383i3/4C3/5S7w0yr01yvMzMzs0Cqvmh/TuiXewyfQ0NC+vr75+fnDw8Pg4ODz8/PDqyKlpaVMQw3jyCiWlpYXFARXV1dcXFzr6+s+NwuEdBewsLBnWxLMsySplR4+Pj55ahUlJSVzc3PY2Ni6pCEbGxsnIwcPDQObiBtxYxQ5MgqOfRlcURCBgYEwMDBISEhKQQ0SEhKNjY1USg8yLAlmZmaTgRoeGwUkIAZ7e3thVRFJegALAAAQe0lEQVR4nOVde1/iOBdGkrRFaAURBW+MKI4MIjqj423m9ft/q7elzbW3nDZtYfb57T+7a9s8JDn3nLT2/nW06vrQ4OLu7mD/8LB/eLh/cHd3Majrw1UzPBr2j39+3LSTcPPxv+P+8KjiEVTIcNh/PfuRSE3Gj7PX/rC6YVTDcHAwOdPgJuJssl/Nwq2A4d0keVHm42ZyZ344hhkO+t8LsqP43jc8lSYZDvrnJemFODdK0hzD/Q8j9EJ87BsblyGGFxONYZ8u15cB1stTjb+eXJgZmhGGB5mr82X+2Ru5XafTItgOgEmr43TdUe9z/pb14PmBicEZYPjtV9oQT6Y917ERxhYhLRWEWBgj23F7jydpL/j1bQsYHv9OHNvpvOe1kE8txizG1MKo5fXmySv393HDDI8Th3XVG9s65CSa9rh3lfi2khxLMfyWMJ776YzA2HGWiMymSVNZaq2WYHh4Gx/L1LVwEXaMJbbcafy1t4cNMBw+x8bxNcKl6FGSeBRfrs+FbfOiDH/GVueqa5enF5FE3dW9+oGftTLsq58/WdgGpk8AtkcxHdKvjeGR6hk9ucgySW8Dgtwv5TtnRbzlAgxVCXrlGVueCkfbUzdkAakKZjhQLLQnD1XDb8MReU/y587B0whleCh/8NKtaP4YR9u9lD8JVRxAhrIIvV+YFS/JHNFClqtAoQpieCSHJx5b5uVLEqzWp/TdG9BKhTDcl77zMka18AuAxrLqgLhVAIaylX1dwwLlIPha+jrAGtdnKIWY3rq4Rn4BcFfylr+bZyiZoasKNUQaCFqJQ3g2zPBI9COWXt0TGAJ7S2EUt5ryRo/hUPz1HhJCEvWAtB7Egei5G1oM7yQRYzfEL4DdE4eiFSHXYXggvtVtZoVSYFccjI7W0GAoqsG1U4+ST4flrIXxaASO8xmKBK8a24IchFyBKOYyFJfotMktyGGLkZzchZrHUBQyjcoYEbZo4OSJmxyGoprobQtBRaTmKI1shkfCixb1Gdr5QAthZNmqP5uhYMmMmtUSKvCID+22OMPnrSUoU8y0UbMYCt7EYtsI+hSFhZrlaWQwFPzB3jbtQQokiJsMfzGdoaDpt0ZNyBCVRrrmT2UoiNEtUfRxiKo/VaCmMuRBp6ttJehT5AbcDZQhDxuumzdF00G4GZ4WZExhKAR+na1m6PBYakqoOJmhsAndpt2lbFiCv5hcZ5TMkOcmetunCGUIYcZzfYY8u/SwvVKGwuaxm8TMVBJDvkaXTQ9fCzwCl6QykhjyBKi3zVKGgnhsvGd6DHkKe7XtmzAE5qHihER4AkP252/baI0mAfGAvw5Druu7u7BGA5AuG3Nc78cY8rjF9W6s0QCCyojFNGIMmdd7sjsEfYosvxjzhlWG3Fwb78oaDUDGbNyq8aYyZJGZx10RMyHQIx24GrVRGDJr5r7pIYPBTPBvmQzZXC+22+COw+JhmyyGLDRzuVtrNABmdTfHGQzZz+DukpgJQdzkSZQYsil82n6XIg77KXESJYasKH0nLG4V3AL/ncaQCdKr3duFARCLS/VTGP7a6SkUJ/FXMkOWC/3axV0YwGYltweJDFlwZgcFaQguTs+TGF7Q/3uym7swAGIG+EUCQ3b6bOfMGQ5u2EwSGNL/d1/PLiSVlHXYzDqNM2SppgLBGYyhJ2UIGs+qqE/lIZv9GEN2ArQLfavlTE/bb6BaKey9BJZTx/g08njGh8pwUFjb41n44Eh/+9IMdQVJH8QUxkBhyEKII+BXrRmbfN0nea7h0XikhLD0fl9hyJQh8JtCmOtB91GHPdJ2wBTygOmrz2WGbJFOgQzxCXi4tnDY59q4ZsIsLzyQGLJFCrRnLLFyp6c1XDITHjFvXXC7pi8xpIUlp8DfFImHPfSWKZYOFnSKsMiERU+hfpcYFlykllSy+0fHViBSCWwFbgxfpiJDVoE4g30Qv0jD1ZkQJJVqtxfmVSLbBXcCQ2aTAi0TTxqtXhBZfsS8qGkR+u6JwJCWlgDVPZbPI+ksOTKSH1mZZ8hc/WfOkOkKPWnIYK/l4WowxHP5kU/z2REuHAaMIbO6gbkKRx6tDkPrvfI55DmMA8aQbsNTmOOkrjgdhuqPUsE+bCGqLyaMIU3cz4G6YqUMN38JSOo+QBXuNtsJZ4wh/RxwG2L1HHK+trCulUeA6kkLfCNShiztC1S/WDmhqxEdwGpLiCoy6VyJDSOGzCiFvkrp0qFR2YBlfQ//pB7o2/sRw9fo36FmcEcZrYa3h5SmQieVBIVYyO01YkgFDdRzUhlqOM9IWdjmXeAAbC+cRQxp6z+goIkx1PAPVYZVCBpB1PwIGbIyNmisW2H4ojEfSGnnUU1olvsvRxuGTJRCQwoKQx3zRFEw2oEPIJhdMdwwZKIUuuvJX2m4OoJf0RbVLFLfYKYf6G8Y0swvOKIgLzmtvLGs8ZdV5Q8Q9VuPNwxpIRvQZlMnRGsXyx4+VLTpj4zabT83DGm0G+zIEDEMpVkkRoRH/lZWV8Yc148NQ+r+wn9RUdRoWnyiUVPVLhTUxc2GIf0gNNotxVx0i8SEZTqtLk/J/TqJITz1y03cN+0Fx+LBJxWmKfnvGDBkIQxw0okns14Az3TCwvOnSlPpLNcw8Bmy7HaRHIK9ofgIapHY8df2e8XnOJjKv/AZslhpofAz7i5GDjTXYQX/VAomA4cCw9OCL9uCJgQJoK7rnc+QltEst3KkBUHoKZMDnyENJa53qa47D5hGcvd9hrSy+3JXK6GSwPzQw3+VoS0y7P/TDPv/iTn8JxlK+/Dfl6X/vj4sa9NsJ0SbhoXazJdFNAfJLi3lW2wrJN+ijH+4tZD8wxI+/tZC9vFz4zTb4R4RiEupxGlyYm14UV1MTB/EfQd0yVFibZnxUtJ5AVdkVoGgMlY/OKfESzNj3pv2KNuwQzerTPenVmLeWXmLMCJaRUkIEKFw1M36K3mLjNyTNUpfv7UiqlL50lynSu4pK38Ylo9WlebTBxWOmkJPyR+m54DpAenm20fQWmS907tqDjg1j88KxF6aZ0jFv1YNlZrHT63FYKUhzTvHbMzvOhsmVouRUk/DDYPmXUeeqtQ5uBKrp0mpibJ5oWTjHST4r60VihBEaVZdm82LuhpvxSOkm/PTnPG6tpTaRKF89LRpUSOUFueL03htYlp9KXZZOUnjvWraHLk2JMuk8/rStBphghfU/Gl2J0pFKrlaP6FGOL3O28Lj600Z02Wjk2iJdZ55f5xU551Vq0+sMM/72eBWlK7vmOWpi6Ra/ZzzFvZmqTbYQFGoann3coeRdN4i58xMeMbwtLFoo80E6d+ezpWR9K/FMzM5557CpsRPDa1Takffz2c6l58ln3vKO7sWdl9cNWSe/gno9Tyid148+exa7vnDMA8AOMxsDuGvO9K+2Sbl/GHeGdJIAjfQhS889/2gvUPSzpDmngMOt2L93T5DKQfoPJZ2Djj/LHfYWbr2RnxhIjBXB3JYlIhyllvjPD7atGGa1yttQkUB6I6Xfh6fLdOMcNZG2jzWSRFtjBlIECW9p4JGX4youUCNLeijhhSAftsZfTF0eptYoWdZ2zUCkQCHmItZvU10+tNEv2lNt5VE3chBdZpZ/Wm0egxFl5/UQpF04Ps+u8eQVp+ocOvXQZG0LnMEXwKy+0Tp9foKncXq9yIhG4KwYnBuz3zsJTHU69cWUaxYopLWxiddt0BmIu+cmNyvTbPnXkSxUr0YLdElrM1Sbs89btdkt1aIrpN60HBGC4I4m2D0EnjxRH7fRN3el3YosV7MN7IKYY03Mv8vkKBG70vt/qWRXryv5rZOFL59Df0BdfqXavegxdHPtahgM0Y3AF3ChIxmD1qhj3DO7JDonsW56c1ISBiwvgJfN6zXR1i/FzS9Z/Hd7ErF3TDhBT/1pdkLGtLPO9IaRi93prf+FbmIULOfN6QnO4oW/snY0DRiJ1wX9wVuc9XuyQ7qq285kfRamdiNJFJC7bcOPKQH6KsPuhuBRIZ4ezkrfY01GkdVA4VuxOYtuXLvRgDeb4G9SIJdje0yHHErWmV/vCI2Peh+C+AdJfw+8Hm38DziFh3htFCpJ+yOEvA9M7hLbYlpMY6YXEdh6ne3mFMGvGdGvCtIrwLJntHa/wdPJ3ciPYwcFlq5LrjQEfSuIPh9T4RnoU8WmgmUzXMYuew4+BR6FJW9BXzfU5E7uyzCf8f5TIukT89bseu2/F1cjF+ryJ1dhe5dwx3O8X4+6mCcITSIhYj7yfvZzcfFtU2Re9fEu/MAZSaY9IQefCefo66NsCXzJMTC2HbcldCltf1YXAoXvTuPx/hh8VgLu1Knq/unaW/kOR1/zqxgSjsdb9R7vPoj/g1o4yZ8suD9h+JFsiBPm6DOQpyeiOnf9/f1+9/Yf2+vV2O7VNaVCD38Uq6TTbuH9JWPAtocGrUWD6dxNjG8XY9RWYNWuIf0NYVJJXfJ+uvOu364T6IV4Ws165SmJ8ae4HfJlr0P2Jcodse9fvy6lHbd6eXb9HrmiyAjsYFy9wHzAHHxIgyfJkItx+l6rg+v6zgtFBOvJQgKnSkPUnnUci83iWCGGEXpe7n/A3erC95wUM/SNCMFWGgPG/N6tRnyqI1PcbtmUSSoRmYgDAWBWkn0tzCQ2GYsVYxqMBRiGsVCfBXBFnvBx+IWIIa8arGE0jAOUU1EFYjFGYpqscr+YxCIij5DEeoyFI3w9tUWnAmm+YQQKeY2iKFEce00fdjSctYggjoMpYXaLhBxNwkstZbMXaKaDCVxU2fVVxy21B00T8joM5SURvsBmrs0BtKSQgg5agLEcO9IsG7ay0KR9/JA3lIYxW22oocylGzUgtmTkiBIauOfaYsWYih6Gu32W7f2YuGu1Ow8y5soylD0F9tmU7/5IFi+ciDDHyzBUNYa7Zcq7r5LARrLfcB1tEQRhntHN9J3Hlv1qH+r9Sh990ZTxhRgKAYZA9wvaliqBC3kqF1a2NAMQ8mE83Hplkr9avCzXaUVv4ahVorh3uBc/uCTV6HmIMh7kj93nhy6N8lQzEyFuPIqmkdie+o9L4nZJeMM946UaWw/udDUrwYs5KoZkDOQiCnBUEyER3hZILNCB9ujE/UjCSnsyhiKFRsR7lddY4uVoO4qlvWIV1lUy3Bv+KwOof01wgYmkmBrpG4/3wzVcyRMMtzbO7yNjaM9daE3A8foueqFST5u1VKuehjGpepmtU5n/jAL1f1YiMymSZnHAhLUEEPVGqe4uh4jGMsgSzXuxRdnAICVXQFDn+OPxGHdP/S8lhbNgFzL682T08a/S/IzwNBXHb8Sx+bjZNpzHRvhxJThpiwD2Y7be4zpBYpfxRSEaYa+W6WaABJe5p+9kdsNSjKwHcCXRR2n6456n/NUbgE+IE5SKoww3Nu7mGQNNcLpcn0ZYL3UKWSYXOR/VgeGGPrY/8gftTY+oB5EOswx9N2OfuZq1cZ5H+xAZMAkw72A5Pd8Bpn4bpTennGGAe4mcYNOD88TrSg2DBUw9DE4mJzlE5JwNtk3PHkRqmG4wbD/ep5sDsj4cfbaL2xX56NChhscDfvHPz9uEqndfPzvuD8s4tVCUDVDhsHF8O5g//Cwf3i4f3A3vKhmSSagNoaN4f8tbCpFqtwiyAAAAABJRU5ErkJggg==" alt="Smiley" width="32" height="32"></td>
+            <td class="clr"><input id="foc" type="text" onfocus="onfocused()" placeholder="Click Me!"></td>
+        </tr>
+
+        <tr>
+            <td class="clr"><img src="image.gif" onerror="onerr()"></td>
+            <td class="clr">
+                <select id="mySelect" onchange="change()">
+                    <option value="Audi">Audi</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Volvo">Volvo</option>
+              </select>
+            </td>
+            <td class="clr"><input type="text" oninput="onInpu()" placeholder="Oninput"></td>
+            <td class="clr"><input type="text" onmouseleave="onmleave()" placeholder="Onmouseleave"></td>
+        </tr>
+
+        <tr>
+            <td class="clr">
+                <form onreset="reset()">
+                <input type="reset">
+                </form>
+            </td>
+            <td class="clr"><input type="text" value="Select me!!" onselect="select()"></td>
+            <td class="clr"><input type="text" value="Copy Me" oncopy="copyme()"></td>
+            <td class="clr"><input type="text" value="Cut Me" oncut="cut()"></td>
+        </tr>
+
+        <tr>
+            <td class="clr"><input type="text" value="Paste here" onpaste="paste()"></td>
+            <td class="clr"><input type="text" id="keyup" onkeyup="keyup()" placeholder="Onkeyup"></td>
+            <td class="clr"><video src="https://www.w3schools.com/jsref/mov_bbb.mp4" controls onplay="pplay()"></video>Onplay</td>
+            <td class="clr"><video src="https://www.w3schools.com/jsref/mov_bbb.mp4" controls onpause="pausee()"></video>Onpause</td>
+        </tr>
+
+        <tr>
+            <td class="clr"><video src="https://www.w3schools.com/jsref/movie.mp4" controls onprogress="progressed()"></video>Onprogress</td>
+            <td class="clr"><video src="" onended="endede()"></video></td>
+            <td class="clr"><video src="" onvolumechange="volchange()"></video></td>
+            <td class="clr"></td>
+        </tr>
+
+    </table>
+
+    <script>
+        function onclicked() {
+            alert("Onclick event is triggred!");
+        }
+
+        function onblured() {
+            alert("Onblure event is triggred!");
+        }
+
+        function ondouble() {
+            alert("Ondoubleclick event is triggred!");
+        }
+
+        function dragging(event) {
+            alert("Dragging event is triggred!");
+        }
+
+        function onkeypressed() {
+            alert("Onkeypress is triggred!");
+        }
+
+        function keydown() {
+            alert("Onkeydown is triggred!");
+        }
+
+        function bigImg() {
+            var x = document.getElementById("img");
+            x.style.width = "64px";
+            x.style.height = "64px";
+        }
+
+        function normalImg() {
+            var x = document.getElementById("img");
+            x.style.width = "32px";
+            x.style.height = "32px";
+        }
+
+        function onfocused() {
+            var x = document.getElementById("foc");
+            x.style.background = "yellow";
+        }
+
+        function onerr() {
+            alert('The image could not be loaded.');
+        }
+
+        function change() {
+            alert("Onchange is triggred!");
+        }
+
+        function Onloaded() {
+            alert("Onload is triggerd!");
+        }
+
+        function onInpu() {
+            alert("Oninput is triggred!");
+        }
+
+        function onmleave() {
+            alert("On mouse leave is triggred!");
+        }
+
+        function resize() {
+            alert("Resize is triggred!");
+        }
+
+        function hashchange() {
+            alert("Onhashchange is triggred!")
+        }
+
+        function reset() {
+            alert("Onreset is triggred!");
+        }
+
+        function select() {
+            alert("Onselect is triggred!");
+        }
+
+        function copyme() {
+            alert("Oncopy is triggred!");
+        }
+
+        function cut() {
+            alert("Oncut is triggred!");
+        }
+
+        function paste() {
+            alert("Onpaste is triggerd!");
+        }
+
+        function keyup() {
+            alert("Onkeyup is triggred!");
+        }
+
+        function pplay() {
+            alert("Onplay is triggred!");
+        }
+
+        function pausee() {
+            alert("Onpause is triggred!");
+        }
+
+        function progressed() {
+            alert("Onprogress is triggred!");
+        }
+    </script>
+</body>
+</html>

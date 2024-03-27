@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Table</title>
+    <style>
+        th, td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Dharm Patel</h1>
+
+    <div class="btns" style="display: flex; width: 12%; margin: auto; justify-content: space-around;">
+        <a href='/attendance-report?page=1&month<%= month %>'><button <%=currentPage==1 ? 'disabled' : '' %>><<</button></a>
+
+        <a href='/attendance-report?page=<%=Math.max(1, Number(currentPage)-1)%>&month<%= month %>'"><button <%= currentPage ==1 ? 'disabled' : '' %>><</button></a>
+
+        <button class=" currentPage"><%= currentPage %></button>
+
+        <a href='/attendance-report?page=<%=Math.min(totalPages, Number(currentPage)+1) %>&month<%= month %>'><button
+                        <%=currentPage==totalPages ? 'disabled' : '' %>>></button></a>
+
+        <a href='/attendance-report?page=<%=totalPages%>&month<%= month %>'><button <%=currentPage==totalPages ? 'disabled' : '' %>>>></button></a>
+
+    </div>
+    <br><br>
+    <div style="text-align: center;">
+        <select id="mnt" onchange="monthChange()">
+            <!-- <option value="">Select Month</option> -->
+            <% if(month == 12) { %>
+            <option value="12" selected>Present in December 2023</option>
+            <option value="1">Present in January 2024</option>
+            <option value="2">Present in February 2024</option>
+            <% } %>
+    
+            <% if(month == 1) { %>
+                <option value="12" >Present in December 2023</option>
+                <option value="1" selected>Present in January 2024</option>
+                <option value="2">Present in February 2024</option>
+            <% } %>
+    
+            <% if(month == 2) { %>
+                    <option value="12" selected>Present in December 2023</option>
+                    <option value="1">Present in January 2024</option>
+                    <option value="2" selected>Present in February 2024</option>
+            <% } %>
+        </select>
+    </div>
+    
+    <br><br>
+    <table border="1" style="text-align: center; margin: 0 auto;  border-collapse: collapse;">
+        <tr>
+            <th>Student Id</th>
+            <th>First Name</th>
+            <th>Present Days</th>
+            <th>Percentage of Att.</th>
+        </tr>
+        <% data.forEach(function(item) { %>
+            <tr>
+                <td>
+                    <%= item.std_id %>
+                </td>
+                <td>
+                    <%= item.first_name %>
+                </td>
+                <td>
+                    <%= item.Present_In_Dec %>
+                </td>
+                <td>
+                    <%= item.Percentage %> %
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+
+    <script>
+        function monthChange() {
+            const month = document.getElementById('mnt').value;
+            window.location.href = `/attendance-report?page=1&month=${month}`;
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Table</title>
+    <style>
+        th {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Dharm Patel</h1>
+
+    <div class="btns" style="display: flex; width: 12%; margin: auto; justify-content: space-around;">
+        <a href='/result-report?page=1'><button <%=currentPage==1 ? 'disabled' : '' %>><<</button></a>
+
+        <a href='/result-report?page=<%=Math.max(1, Number(currentPage)-1)%>'"><button <%= currentPage ==1 ? 'disabled' : '' %>><</button></a>
+
+        <button class=" currentPage"><%= currentPage %></button>
+
+        <a href='/result-report?page=<%=Math.min(totalPages, Number(currentPage)+1) %>'><button
+                        <%=currentPage==totalPages ? 'disabled' : '' %>>></button></a>
+
+        <a href='/result-report?page=<%=totalPages%>'><button <%=currentPage==totalPages ? 'disabled' : '' %>>>></button></a>
+
+    </div>
+    <br><br>
+    <table border="1" style="text-align: center; margin: 0 auto;  border-collapse: collapse;">
+        <tr>
+            <th rowspan="2">Student Id</th>
+            <th rowspan="2">First Name</th>
+            <th colspan="2">Terminal Marks</th>
+            <th colspan="2">Prelim Marks</th>
+            <th colspan="2">Final Marks</th>
+            <th rowspan="2">Total Practical Marks</th>
+            <th rowspan="2">Total Theory Marks</th>
+            <td rowspan="2">Show Result</td>
+        </tr>
+        <tr>
+            <th>Prac Marks of Terminal</th>
+            <th>Theo Marks of Terminal</th>
+            <th>Prac Marks of Prelim</th>
+            <th>Theo Marks of Prelim</th>
+            <th>Prac Marks of Final</th>
+            <th>Theo Marks of Final</th>
+        </tr>
+        <% data.forEach(function(item) { %>
+            <tr>
+                <td>
+                    <%= item.std_id %>
+                </td>
+                <td>
+                    <%= item.name %>
+                </td>
+                <td>
+                    <%= item.practical_marks_of_terminal %>
+                </td>
+                <td>
+                    <%= item.theory_marks_of_terminal %> 
+                </td>
+                <td>
+                    <%= item.practical_marks_of_prelim %> 
+                </td>
+                <td>
+                    <%= item.theory_marks_of_prelim %> 
+                </td>
+                <td>
+                    <%= item.practical_marks_of_final %> 
+                </td>
+                <td>
+                    <%= item.theory_marks_of_final %> 
+                </td>
+                <td>
+                    <%= item.practical_total_marks %> 
+                </td>
+                <td>
+                    <%= item.theory_total_marks %> 
+                </td>
+                <!-- <%console.log(item.total_marks)%> -->
+                
+                <td>
+                    <button type="submit" onclick="window.location.href='/one-std-result?id=<%= item.std_id %>'">More Details</button>
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>
+

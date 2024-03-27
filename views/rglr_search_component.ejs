@@ -1,0 +1,10 @@
+
+<div class="btns" style="display: flex; width: 12%; margin: auto; justify-content: space-around;">
+    <a href='/rglr-search-data?page=1&querys=<%= querys %>'><button <% if(currentPage==1){ %> disabled || onclick="return false;" <% } %> > << </button> </a>
+    <a href='/rglr-search-data?page=<%=Number(currentPage)-1%>&querys=<%= querys %>'"><button <% if(currentPage==1){ %> disabled || onclick="return false;" <% } %> > < </button></a>
+
+    <button class=" currentPage"><%= currentPage %></button>
+
+    <a href='/rglr-search-data?page=<%=Number(currentPage)+1%>&querys=<%= querys %>'><button <% if(currentPage==totalPages){ %> disabled || onclick="return false;" <% } %>> > </button></a>
+    <a href='/rglr-search-data?page=<%=Number(totalPages)%>&querys=<%= querys %>'><button <% if(currentPage==totalPages){ %> disabled <% } %>> >> </button></a>
+</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2nd Feb 2024 Color Table</title>
+</head>
+<style>
+    body {
+        background-color:aquamarine;
+    }
+    
+    .btn {
+        height: 45px;
+        width: 45px;
+        border: 3px solid black;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+    #div2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: xx-large;
+    }
+</style>
+
+<body onload="randomcol()" id="bbd">
+<center>
+        <div id="div1">
+        <h1>Dharm Patel</h1>
+        <h1>1st Feb 2024</h1>
+        <h1>Employee Id - 24DEV012</h1>
+        <h3>Score: <span id="min" class="score">0</span> </h3>
+        <h3>Timer: <span class="time"></span> </h3>
+        </div>
+        <!-- <div id="min">
+            Score : 0
+        </div> -->
+
+
+        <br><br><br>
+        <div id="div2">
+        <table border="1" height="600px" width="600px" id="mytable" class="table">
+            <tr>
+                <!-- <td class="demo" onclick="addcolrow()"></td> -->
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        </div>
+        <br><br>
+    </center>
+    <script>
+        var score = 0;
+        function addcolrow() {
+            var table = document.getElementById("mytable");
+            var cols = table.rows[0].cells.length;
+            var row = table.insertRow(table.rows.length);
+            for (var i = 0; i < cols; i++) {
+                var cell = row.insertCell(i);
+
+            }
+
+            var table = document.getElementById("mytable");
+            var rws = table.rows;
+            var cols = table.rows[0].cells.length;
+            for (var i = 0; i < rws.length; i++) {
+                var cell = rws[i].insertCell(cols);
+            }
+
+
+            score++;
+            document.querySelector(".score").innerHTML = score;
+
+            removeEvent();
+            randomcol();
+        }
+
+
+
+        function randomcol() {
+            let randColor = '#' + (Math.random().toString(16).slice(-6));
+
+            var cellForColor = document.getElementsByTagName("td");
+            for (let i = 0; i < cellForColor.length; i++) {
+                cellForColor[i].style.backgroundColor = randColor;
+            }
+            var randCell = cellForColor[Math.floor(Math.random() * cellForColor.length)];
+            // randCell.style.background = randColor;
+            randCell.style.opacity = "0.5";
+
+            randCell.addEventListener("click", addcolrow);
+
+          
+            
+        }
+
+        function removeEvent() {
+            var cellsForColor = document.getElementsByTagName("td");
+            for (let i = 0; i < cellsForColor.length; i++) {
+                cellsForColor[i].removeEventListener("click", addcolrow);
+                cellsForColor[i].style.opacity = '1';
+            }
+        }
+
+        let count = 20; 
+        const timer = setInterval(function () {
+            count--;
+            document.querySelector(".time").innerHTML = count;
+            console.log(count);
+            if (count === 0) {
+                clearInterval(timer);
+                document.getElementById("div1").innerHTML = "";
+                document.getElementById("div2").innerHTML = "Your score is " + score;
+                // console.log("Time's up!");
+            // document.getElementById("mytable").style.display="none";
+            // document.write("<center><h1>Game Over </h1></center>");
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

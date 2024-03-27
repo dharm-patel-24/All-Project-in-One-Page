@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whole Result</title>
+    <style>
+        th {
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Dharm Patel</h1>
+    <br><br>
+    <h2>Name: <%=name%></h2>
+    <br><br>
+    <table border="1" style="text-align: center; margin: 0 auto;  border-collapse: collapse;">
+        <tr>
+            <th rowspan="2">Subject Name</th>
+            <th colspan="2">Terminal Marks</th>
+            <th colspan="2">Prelim Marks</th>
+            <th colspan="2">Final Marks</th>
+            <th rowspan="2">Total Marks</th>
+        </tr>
+        <tr>
+            <th>Prac Marks of Terminal</th>
+            <th>Theo Marks of Terminal</th>
+            <th>Prac Marks of Prelim</th>
+            <th>Theo Marks of Prelim</th>
+            <th>Prac Marks of Final</th>
+            <th>Theo Marks of Final</th>
+        </tr>
+        <% data.forEach(function(item, index) { %>
+            <tr>
+                <td>
+                    <%= item.subName %>
+                </td>
+                <td>
+                    <%= item.terminal_practical_marks %>
+                </td>
+                <td>
+                    <%= item.terminal_theory_marks %>
+                </td>
+                <td>
+                    <%= item.prelim_practical_marks %> 
+                </td>
+                <td>
+                    <%= item.prelim_theory_marks %> 
+                </td>
+                <td>
+                    <%= item.final_practical_marks %> 
+                </td>
+                <td>
+                    <%= item.final_theory_marks %> 
+                </td>
+                <td>
+                    <%= item.total_marks %> 
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+
+</html>

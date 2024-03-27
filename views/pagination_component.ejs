@@ -1,0 +1,166 @@
+<h1 style="text-align: center;"><u>Student Data</u></h1>
+
+<div style="display: flex;">
+
+    <div class="btns" style="display: flex; width: 12%; margin: auto; justify-content: space-around;">
+        <a href='/pagination?page=1&orderBy=<%= orderBy %>'><button <%=currentPage==1 ? 'disabled' : '' %>><<</button></a>
+
+        <a href='/pagination?page=<%=Math.max(1, Number(currentPage)-1)%>&orderBy=<%= orderBy %>'"><button <%= currentPage ==1 ? 'disabled' : '' %>><</button></a>
+
+        <button class=" currentPage">
+            <%= currentPage %></button>
+
+        <a href='/pagination?page=<%=Math.min(totalPages, Number(currentPage)+1) %>&orderBy=<%= orderBy %>'><button
+                        <%=currentPage==totalPages ? 'disabled' : '' %>>></button></a>
+
+        <a href='/pagination?page=<%=totalPages%>&orderBy=<%= orderBy %>'><button <%=currentPage==totalPages
+                        ? 'disabled' : '' %>>>></button></a>
+
+    </div>
+
+
+    <div>
+        <label for="">Order By: </label>
+        <select id="orderBy" onchange="orderByFunc()">
+            <!-- <option id="none" value="none">Select Option</option> -->
+            <% if(orderBy== 'std_id') { %>
+            <option value="std_id" selected>Student Id</option>
+            <option value="first_name">First Name</option>
+            <option value="last_name">Last Name</option>
+            <option value="email">Email</option>
+            <option value="number">Phone Number</option>
+            <option value="stream">Stream</option>
+            <option value="age">Age</option>
+            <option value="city">City</option>
+            <option value="gender">Gender</option>
+            <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'first_name') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" selected>First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="number">Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age">Age</option>
+                <option value="city">City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'last_name') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" >First Name</option>
+                <option value="last_name" selected>Last Name</option>
+                <option value="email">Email</option>
+                <option value="number">Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age">Age</option>
+                <option value="city">City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'email') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" selected>First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email" selected>Email</option>
+                <option value="number">Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age">Age</option>
+                <option value="city">City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'number') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" >First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="number" selected>Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age">Age</option>
+                <option value="city">City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'stream') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" >First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="number" >Phone Number</option>
+                <option value="stream" selected>Stream</option>
+                <option value="age">Age</option>
+                <option value="city">City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'age') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" >First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="number" >Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age" selected>Age</option>
+                <option value="city">City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'city') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" >First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="number" >Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age" >Age</option>
+                <option value="city" selected>City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'gender') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" >First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="number" >Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age" >Age</option>
+                <option value="city" >City</option>
+                <option value="gender" selected>Gender</option>
+                <option value="created_date">Created Date & Time</option>
+            <% } %>
+
+            <% if(orderBy== 'created_date') { %>
+                <option value="std_id" >Student Id</option>
+                <option value="first_name" >First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="number" >Phone Number</option>
+                <option value="stream">Stream</option>
+                <option value="age" >Age</option>
+                <option value="city" >City</option>
+                <option value="gender">Gender</option>
+                <option value="created_date" selected>Created Date & Time</option>
+            <% } %>
+
+        </select>
+    </div>
+</div>
+
+<script>
+    function orderByFunc() {
+        const orderBy = document.getElementById('orderBy').value;
+        const currentPage = '<%= currentPage %>';
+        window.location.href = `/main/?page=${currentPage}&orderBy=${orderBy}`;
+    }
+</script>
