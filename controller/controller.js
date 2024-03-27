@@ -226,7 +226,7 @@ const filter = (req, res) => {
 }
 
 const searchById = (req, res) => {
-    res.render('table', { display: "no" });
+    res.render('search_id_OR_table', { display: "no" });
 }
 
 const getSearchedDataById = (req, res) => {
@@ -235,12 +235,12 @@ const getSearchedDataById = (req, res) => {
     const sql = `select * from Student_Master_26 where std_id in (${query})`;
         con.query(sql, (err, result) => {
             if(err) throw err;
-            res.render('table', {data: result, display: "show"});
+            res.render('search_id_OR_table', {data: result, display: "show"});
         });
 }
 
 const searchByIdShowMore = (req, res) => {    
-    res.render('showMore', {display: "no"});    
+    res.render('search_id_OR_showMore', {display: "no"});    
 }
 
 const searchbyANDOR = (req, res) => { 
@@ -254,7 +254,7 @@ const searchbyANDOR = (req, res) => {
         const sql = `select * from Student_Master_26 where last_name like '${last_name}%' ${operation} city like '${city}%' ${operation} stream like '${stream}%' ${operation} age like '${age}%' ${operation} gender like '${gender}%'`;
         con.query(sql, [ city, stream, age, gender], (err, result) => {
             if(err) throw err;
-            res.render('showMore', {data: result, display: "show"});
+            res.render('search_id_OR_showMore', {data: result, display: "show"});
         });
 }
 

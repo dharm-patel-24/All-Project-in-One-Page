@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button {
+            background-color: rgb(174, 255, 255);
+            font-size: medium;
+
+        }
+        .button:hover {
+            background-color: rgb(133, 239, 239);
+        }
+        .more {
+            margin-left: 1050px;
+        }
+    </style>
+</head>
+<body style="background-color: rgb(243, 230, 230);">
+    <br><br>
+    <form method="post" action="/get-searched-data-by-id" style="text-align: center; margin: 10 auto;">
+        <input type="text" name="str" placeholder="Search by Student Id" style="height: 30px; width: 330px; border: none;">
+        <input type="submit" class="button" value="Go" style="height: 32px; padding: 7px 20px; border: none; ">
+    </form>    
+    <br>                                   
+    <a class="more" href="/search-by-id-showMore">Show more</a>
+    <br><br>
+    <% if(display == "show") { %>  
+    <table border="1" style="color: aliceblue; background-color: rgb(40, 108, 110); justify-content: center; text-align: center;">
+        <tr>
+            <th>Student Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>                     
+            <th>Email Id</th>
+            <th>Phone Number</th>
+            <th>Stream</th>
+            <th>Age</th>
+            <th>City</th>
+            <th>Gender</th>
+            <th>Created Date</th>
+        </tr>
+        <% data.forEach(function(item) { %>
+            <tr>
+                <td>
+                    <%= item.std_id %>
+                </td>
+                <td>
+                    <%= item.first_name %>
+                </td>
+                <td>
+                    <%= item.last_name %>
+                </td>
+                <td>
+                    <%= item.email %>
+                </td>
+                <td>
+                    <%= item.number %>
+                </td>
+                <td>
+                    <%= item.stream %>
+                </td>
+                <td>
+                    <%= item.age %>
+                </td>
+                <td>
+                    <%= item.city %>
+                </td>
+                <td>
+                    <%= item.gender %>
+                </td>
+                <td>
+                    <%= item.created_date %>
+                </td>
+            </tr>
+        <% }); %>
+        <% } %>
+    </table>
+    
+</body>
+</html>
+

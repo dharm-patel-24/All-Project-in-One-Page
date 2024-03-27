@@ -1,0 +1,84 @@
+<style>
+    body {
+        background-color: rgb(243, 230, 230);
+    }
+    .button {
+        background-color: rgb(174, 255, 255);
+        font-size: medium;
+
+    }
+    .button:hover {
+        background-color: rgb(133, 239, 239);
+    }
+    .operation {
+        height: 30px;
+        width: 60px;
+    }
+</style>
+
+<form method="post" action="/search-by-AND-OR" style="text-align: center; margin: 10 auto;">
+    <input type="text" name="last_name" placeholder="Search by Last Name" style="height: 30px; width: 230px; border: none;"> 
+    <input type="text" name="city" placeholder="Search by City" style="height: 30px; width: 230px; border: none;">
+    <input type="text" name="stream" placeholder="Search by Stream" style="height: 30px; width: 230px; border: none;">
+    <input type="text" name="age" placeholder="Search by Age" style="height: 30px; width: 230px; border: none;">
+    <input type="text" name="gender" placeholder="Search by Gender" style="height: 30px; width: 230px; border: none;">
+    <select class="operation" name="operation" id="operation">
+        <option name="or" value="OR">OR</option>
+        <option name="AND" value="AND">AND</option>
+    </select>
+    <input type="submit" class="button" value="Go" style="height: 32px; padding: 7px 20px; border: none; ">
+</form>
+<br>
+    <% if(display == "show") { %> 
+    <% try { %> 
+    <table border="1" style="color: aliceblue; background-color: rgb(40, 108, 110); justify-content: center; text-align: center;">
+        <tr>
+            <th>Student Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Id</th>
+            <th>Phone Number</th>
+            <th>Stream</th>
+            <th>Age</th>
+            <th>City</th>
+            <th>Gender</th>
+            <th>Created Date</th>
+        </tr>
+        <% data.forEach(function(item) { %>
+            <tr>
+                <td>
+                    <%= item.std_id %>
+                </td>
+                <td>
+                    <%= item.first_name %>
+                </td>
+                <td>
+                    <%= item.last_name %>
+                </td>
+                <td>
+                    <%= item.email %>
+                </td>
+                <td>
+                    <%= item.number %>
+                </td>
+                <td>
+                    <%= item.stream %>
+                </td>
+                <td>
+                    <%= item.age %>
+                </td>
+                <td>
+                    <%= item.city %>
+                </td>
+                <td>
+                    <%= item.gender %>
+                </td>
+                <td>
+                    <%= item.created_date %>
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+    <% } catch(err) {%>
+<% } %>
+<% } %>
