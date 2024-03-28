@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: codewell, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+            background-color: #C1CDF5;
+        }
+
+        .h1 {
+            text-align: center;
+            margin-top: 140px;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            /* margin-top: 250px; */
+        }
+
+        .super {
+            font-size: large;
+            border-radius: 9px;
+            margin: 30px 670px;
+            background-color: #859FEC;
+        }
+
+        .first {
+            margin-right: 45px;
+        }
+
+        .btnClass {
+            padding: 10px 100px;
+        }
+
+        .btn {
+            width: 100%;
+            height: 35px;
+            font-size: medium;
+            background-color: #4169E1;
+            border: none;
+            cursor: pointer;
+            border-radius: 7px;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #2a5aeb;
+        }
+
+        .big {
+            height: 20px;
+            width: 180px;
+        }
+
+        #msg {
+            margin: 0px 2px;
+        }
+        .dharm {
+            background-color: #4f76ec;
+            width: 300px;
+            text-align: center;
+            margin: auto;
+            padding: 3px 0px;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dharm">
+        <h2>Dharm Patel</h1>
+        <h2>Employee Id: 24DEV012</h1>
+    </div>
+    <h1 class="h1">Registration Form</h1>
+    <form id="form">
+        <div class="super">
+            <div class="main">
+                <div class="first">
+                    <br><br>
+                    <label for="">First Name</label> <br><br>
+                    <input type="text" class="big" name="firstname" id="firstname">
+                    <br><br><br>
+                    <label for="">Last Name</label> <br><br>
+                    <input type="text" class="big" name="lastname" id="lastname">
+                    <br><br><br>
+                    <label for="">Email</label> <br><br>
+                    <input type="text" class="big" name="email" id="email">
+                    <div id="mailcheck" style="color: red; font-size: medium;"></div>
+                    <br>
+
+                </div>
+                <div class="second">
+                    <br><br>
+                    <label for="">Phone Number</label> <br><br>
+                    <input type="text" class="big" name="phone" id="phone">
+                    <br><br><br>
+                    <label for="gender">Gender</label> <br><br>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male" for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    </select>
+                    <br><br><br>
+                    <label for="">Date of Birth</label> <br><br>
+                    <input type="date" class="big" name="dob" id="dob">
+                </div>
+            </div>
+            <div id="black"></div>
+            <a id="msg" name="acti"></a>
+            <div class="btnClass">
+                <input type="submit" class="btn" value="Register">
+            </div>
+        </div>
+    </form>
+    <script>
+        function randomStr(len, arr) {
+            let ans = '';
+            for (let i = len; i > 0; i--) {
+                ans += arr[(Math.floor(Math.random() * arr.length))];
+            }
+            var email = document.getElementById('email').value;
+            document.getElementById('black').innerHTML = "Click on this link for Activation: ";
+            document.getElementById('msg').innerHTML = "http://localhost:8080/activated/" + ans + "/" + email;
+            document.getElementById('msg').setAttribute('href', '/activated/' + ans + "?email=" + email);
+        }
+
+        document.getElementById('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            let form = document.getElementById('form');
+            let form_data = new FormData(form);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/registration-form-submit', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    console.log(this.responseText);
+                    document.getElementById('mailcheck').innerHTML = this.responseText;
+                    document.getElementById('msg').style.display = "none";
+                    document.getElementById('black').style.display = "none";
+                }
+            }
+            xhr.send(new URLSearchParams(form_data));
+
+            randomStr(12, '12345abcde');
+        });
+    </script>
+</body>
+
+</html>

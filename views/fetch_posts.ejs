@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <br>
+    <div class="main" style="display: flex; gap: 10px; margin: 10px auto; justify-content: center;">
+        <div style="text-align: center;">
+            <button onclick="previous()" id="previous">&#x276E;</button>
+            <span id="page"></span>
+            <button onclick="next()" id="next">&#x276F;</button>
+        </div>
+        <div>
+            <input type="text" placeholder="Search" name="str" id="inp">
+            <input type="submit" class="button" value="Go" onclick="searchData()">
+        </div>
+    </div>
+    
+    <table border="1" style="border-collapse: collapse; text-align: center; margin: 10px auto;">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>Id</th>
+                <th>Title</th>
+                <!-- <th>Body</th> -->
+                <th>Show More</th>
+            </tr>
+        </thead>
+        <tbody id="demo">
+
+        </tbody>
+    </table>
+    <script>
+        let post;
+        let post1;
+        var start = 0;
+        var end = 10;
+        var page = 1;
+        var demo = document.getElementById('demo');
+        
+        async function showTable() {
+            const fetchData = await fetch('https://jsonplaceholder.typicode.com/posts');
+            post = await fetchData.json();
+
+            post1 = post;
+            printData();
+        }
+        showTable();
+
+        function printData() {
+           
+    
+            if(start > post.length){
+                start = 0;
+            }
+            var newPost = post.slice(start, end);
+                
+                var temp = "";
+                newPost.forEach((itemData) => {
+                    temp += "<tr>";
+                    temp += "<td>" + itemData.userId + "</td>";
+                    temp += "<td>" + itemData.id + "</td>";
+                    temp += "<td>" + itemData.title + "</td>";
+                    temp += `<td><a href='/posts-fetch-showMore/${itemData.id}'>Show more</a></td>`;
+                    temp += "</tr>";
+                });
+                demo.innerHTML = temp;
+                document.getElementById('page').innerHTML = page;
+        }
+
+        function next() {
+            start = start+10;
+            end = end+10;
+            page = page + 1;
+            if(page >= 1 && page < 11) {
+                printData();
+            }
+        }
+
+        function previous() {
+            start = start-10;
+            end = end-10;
+            page = page - 1;
+            if(page < 11 && page >= 1) {
+                printData();
+            }
+        }
+
+        function searchData() {
+            page = 1
+            const data = document.getElementById('inp').value;
+            
+            post = post1.filter((p) => {
+                console.log(p);
+                return (p.title).includes(data);
+            });
+            printData();
+        }
+    </script>
+</body>
+
+</html>

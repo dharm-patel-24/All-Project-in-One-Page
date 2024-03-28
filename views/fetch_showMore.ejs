@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse; text-align: center; margin: 10px auto;">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>Id</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody id="demo">
+        </tbody>
+    </table>
+
+    <button onclick="showComments()" id="btn">Comments</button>
+
+    <table id="comm" border="1" style="border-collapse: collapse; margin: 10px auto;">
+        <thead>
+            <tr>
+                <th>Post Id</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="now">
+
+        </tbody>
+    </table>
+
+    <script>
+        var display = true;
+        document.getElementById('comm').style.display = 'none';
+        async function showTable() {
+            const fetchData = await fetch('https://jsonplaceholder.typicode.com/posts/<%=id%>');
+            const post = await fetchData.json();
+            console.log(post.userId);
+            var temp = "";
+
+            temp += "<tr>";
+            temp += "<td>" + post.userId + "</td>";
+            temp += "<td>" + post.id + "</td>";
+            temp += "<td>" + post.title + "</td>";
+            temp += "</tr>";
+            
+            document.getElementById('demo').innerHTML = temp;
+            }
+            
+            async function newComment() {
+                const fetchData = await fetch('https://jsonplaceholder.typicode.com/posts/<%=id%>/comments');
+                const post = await fetchData.json();
+                var arr = "";
+                post.forEach((itemData) => {
+                    arr += "<tr>";
+                    arr += "<td>" + itemData.postId + "</td>";
+                    arr += "<td>" + itemData.id + "</td>";
+                    arr += "<td>" + itemData.name + "</td>";
+                    arr += "<td>" + itemData.email + "</td>";
+                    arr += "</tr>";
+                });
+                document.getElementById('now').innerHTML = arr;
+            }
+            function showComments() {
+                if(display) {
+                    newComment();
+                    document.getElementById('comm').style.display = 'block';
+                    display = false;
+                    document.getElementById('btn').innerHTML = 'Hide Comments';
+                } else {
+                    document.getElementById('comm').style.display = 'none';
+                    document.getElementById('now').innerHTML = '';
+                    display = true;
+                    document.getElementById('btn').innerHTML = 'Comments';
+                }
+            }
+        showTable();
+    </script>
+</body>
+</html>

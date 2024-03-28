@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job App. Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: codewell, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+        }
+
+        #main {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btns {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            left: 820px;
+            top: 650px;
+        }
+
+        .pre {
+            height: 25px;
+            width: 90px;
+            background-color: rgb(155, 166, 166);
+            text-align: center;
+            font-size: large;
+            margin: auto;
+            cursor: pointer;
+            padding: 2px;
+            border: 1px solid rgb(141, 155, 155);
+        }
+
+        .next {
+            height: 25px;
+            width: 70px;
+            background-color: rgb(155, 166, 166);
+            text-align: center;
+            font-size: large;
+            margin: auto;
+            cursor: pointer;
+            padding: 2px;
+            border: 1px solid rgb(141, 155, 155);
+        }
+
+        .first {
+            align-items: center;
+        }
+
+        .divForWork {
+            display: flex;
+        }
+
+        .add,
+        .remove {
+            height: 25px;
+            width: 70px;
+            background-color: rgb(168, 171, 171);
+            border: 1px solid black;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            margin-top: 9px;
+            margin-left: 10px;
+        }
+
+        .add:hover,
+        .remove:hover,
+        .pre:hover,
+        .next:hover {
+            background-color: rgb(208, 218, 218);
+            cursor: pointer;
+        }
+
+        .sub {
+            margin-top: 80px;
+            margin-left: 200px;
+            width: 75px;
+            height: 30px;
+            font-size: medium;
+            margin-left: 394px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Job Application Form</h1>
+    </center>
+    
+        <form id="form">
+            <div id="main">
+                <div class="first tab" id="first">
+                    <fieldset style="width: 400px">
+                        <legend>Basic Details</legend>
+
+                        <label for="fname">First Name</label>
+                        <input type="text" name="firstname" id="firstname" autofocus value="<%=  item ? item.Basic_Detail_v[0].firstname : '' %>">
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="lastname" id="lastname" value ='<%= item ? item.Basic_Detail_v[0].lastname : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+
+                        <label for="desig">Designation</label>
+                        <input type="text" name="designation" id="designation" value ='<%= item ? item.Basic_Detail_v[0].designation : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" value ='<%= item ? item.Basic_Detail_v[0].email : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="phone" id="phone" value ='<%= item ? item.Basic_Detail_v[0].phone : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        <br>
+
+                        <label for="add">Address 1</label>
+                        <input type="text" name="addressOne" id="addressOne" value ='<%= item ? item.Basic_Detail_v[0].addressOne : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+
+                        <label for="add">Address 2</label>
+                        <input type="text" name="addressTwo" id="addressTwo" value ='<%= item ? item.Basic_Detail_v[0].addressTwo : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+                        <label for="city">City</label>
+                        <select name="city" id="city">
+                            <option value="">Select City</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        <br><br>
+                        <% item && item.Basic_Detail_v[0].gender == "male" ? 'checked'
+                         : '' %>
+                        <label for="gender">Gender</label>
+                        <input type="radio" id="male" name="gender" class="gender" value="male" <%= item && item.Basic_Detail_v[0].gender == 'male' ? 'checked'
+                         : '' %>>
+                        <label for="male" for="male">Male</label>
+                        <input type="radio" id="female" name="gender" class="gender" value="female" <%= item && item.Basic_Detail_v[0].gender == 'female' ? 'checked'
+                        : '' %>>
+                        <label for="female">Female</label>
+                        <br>
+                        <span class="errors error" style="color: red; font-size: small;"></span>
+
+                        <br>
+                        <label for="state">State</label>
+                        <select name="state" id="state" onchange="showState(this.value)">
+                            <option value="">Select State</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        <br><br>
+                        <label for="relation">Relationship Status</label>
+                        <select name="status" id="status">
+                            <option value="">Select Status</option>
+                            <option value="single" <%= item && item.Basic_Detail_v[0].status == "single" ? 'selected' : '' %>>Single</option>
+                            <option value="married" <%= item && item.Basic_Detail_v[0].status == "married" ? 'selected' : '' %>>Married</option>
+                        </select>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="text" name="dob" id="dob" value ='<%= item ? item.Basic_Detail_v[0].DOB : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br>
+
+                        <label for="zip">Zip Code</label>
+                        <input type="text" name="pin" id="pin" value ='<%= item ? item.Basic_Detail_v[0].pin : "" %>'>
+                        <br>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                    </fieldset>
+                </div>
+                <br><br>
+
+
+
+                <div class="second tab" id="second">
+                    <fieldset style="width: 1230px">
+                        <legend>Education Details</legend>
+
+                        <abbr title="Secondary School Certificate">SSC</abbr>
+                        <br>
+                        <label for="course">Course Name</label>
+                        <!-- <input type="text" name="courseName" id="courseName"> -->
+                        <select name="courseName[]" id="courseName">
+                            <option value="">Select Course</option>
+                            <option value="SSC" <%= item && item.Education_Details_v[0].course_name == "SSC" ?'selected' : "" %>>SSC</option>
+                            <option value="HSC" <%= item && item.Education_Details_v[0].course_name == "HSC" ?'selected' : "" %>>HSC</option>
+                            <option value="BE" <%= item && item.Education_Details_v[0].course_name == "BE" ?'selected' : "" %>>BE</option>
+                            <option value="ME" <%= item && item.Education_Details_v[0].course_name == "ME" ?'selected' : "" %>>ME</option>
+                            <option value="PHD" <%= item && item.Education_Details_v[0].course_name == "PHD" ?'selected' : "" %>>PHD</option>
+                            <option value="BCA" <%= item && item.Education_Details_v[0].course_name == "BCA" ?'selected' : "" %>>BCA</option>
+                            <option value="MCA" <%= item && item.Education_Details_v[0].course_name == "MCA" ?'selected' : "" %>>MCA</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        &nbsp; &nbsp;
+                        <label for="year">Passing Year</label>
+                        <input type="text" name="passingYear[]" id="sscPassingYear" value ='<%= item ? item.Education_Details_v[0].passing_year : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        &nbsp; &nbsp;
+                        <label for="percentage">Percentage</label>
+                        <input type="text" name="percentage[]" id="sscPercentage" value ='<%= item ? item.Education_Details_v[0].percentage : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <br><br><br>
+
+
+                        <abbr title="Higher Secondary School Certificate">HSC</abbr>
+                        <br>
+                        <label for="course">Course Name</label>
+                        <!-- <input type="text" name="acourseName" id="acourseName"> -->
+                        <select name="courseName[]" id="acourseName">
+                            <option value="">Select Course</option>
+                            <option value="SSC" <%= item && item.Education_Details_v[1].course_name == "SSC" ?'selected' : "" %>>SSC</option>
+                            <option value="HSC" <%= item && item.Education_Details_v[1].course_name == "HSC" ?'selected' : "" %>>HSC</option>
+                            <option value="BE" <%= item && item.Education_Details_v[1].course_name == "BE" ?'selected' : "" %>>BE</option>
+                            <option value="ME" <%= item && item.Education_Details_v[1].course_name == "ME" ?'selected' : "" %>>ME</option>
+                            <option value="PHD" <%= item && item.Education_Details_v[1].course_name == "PHD" ?'selected' : "" %>>PHD</option>
+                            <option value="BCA" <%= item && item.Education_Details_v[1].course_name == "BCA" ?'selected' : "" %>>BCA</option>
+                            <option value="MCA" <%= item && item.Education_Details_v[1].course_name == "MCA" ?'selected' : "" %>>MCA</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <label for="year">Passing Year</label>
+                        <input type="text" name="passingYear[]" id="hscPassingYear" value ='<%= item ? item.Education_Details_v[1].passing_year : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <label for="percentage">Percentage</label>
+                        <input type="text" name="percentage[]" id="hscPercentage" value ='<%= item ? item.Education_Details_v[1].percentage : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+
+                        <br><br><br>
+
+                        <p>Bachelor Degree</p>
+                        <label for="course">Course Name</label>
+                        <!-- <input type="text" name="beCourseName" id="beCourseName"> -->
+                        <select name="courseName[]" id="beCourseName">
+                            <option value="">Select Course</option>
+                            <option value="">Select Course</option>
+                            <option value="SSC" <%= item && item.Education_Details_v[2].course_name == "SSC" ?'selected' : "" %>>SSC</option>
+                            <option value="HSC" <%= item && item.Education_Details_v[2].course_name == "HSC" ?'selected' : "" %>>HSC</option>
+                            <option value="BE" <%= item && item.Education_Details_v[2].course_name == "BE" ?'selected' : "" %>>BE</option>
+                            <option value="ME" <%= item && item.Education_Details_v[2].course_name == "ME" ?'selected' : "" %>>ME</option>
+                            <option value="PHD" <%= item && item.Education_Details_v[2].course_name == "PHD" ?'selected' : "" %>>PHD</option>
+                            <option value="BCA" <%= item && item.Education_Details_v[2].course_name == "BCA" ?'selected' : "" %>>BCA</option>
+                            <option value="MCA" <%= item && item.Education_Details_v[2].course_name == "MCA" ?'selected' : "" %>>MCA</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <label for="year">Passing Year</label>
+                        <input type="text" name="passingYear[]" id="bePassingYear" value ='<%= item ? item.Education_Details_v[2].passing_year : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <label for="percentage">Percentage</label>
+                        <input type="text" name="percentage[]" id="bePercentage" value ='<%= item ? item.Education_Details_v[2].percentage : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <br><br><br>
+
+                        <p>Master Degree</p>
+                        <label for="course">Course Name</label>
+                        <!-- <input type="text" name="meCourseName" id="meCourseName"> -->
+                        <select name="courseName[]" id="meCourseName">
+                            <option value="">Select Course</option>
+                            <option value="SSC" <%= item && item.Education_Details_v[3].course_name == "SSC" ?'selected' : "" %>>SSC</option>
+                            <option value="HSC" <%= item && item.Education_Details_v[3].course_name == "HSC" ?'selected' : "" %>>HSC</option>
+                            <option value="BE" <%= item && item.Education_Details_v[3].course_name == "BE" ?'selected' : "" %>>BE</option>
+                            <option value="ME" <%= item && item.Education_Details_v[3].course_name == "ME" ?'selected' : "" %>>ME</option>
+                            <option value="PHD" <%= item && item.Education_Details_v[3].course_name == "PHD" ?'selected' : "" %>>PHD</option>
+                            <option value="BCA" <%= item && item.Education_Details_v[3].course_name == "BCA" ?'selected' : "" %>>BCA</option>
+                            <option value="MCA" <%= item && item.Education_Details_v[3].course_name == "MCA" ?'selected' : "" %>>MCA</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <label for="year">Passing Year</label>
+                        <input type="text" name="passingYear[]" id="mePassingYear" value ='<%= item ? item.Education_Details_v[3].passing_year : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+                        <label for="percentage">Percentage</label>
+                        <input type="text" name="percentage[]" id="mePercentage" value ='<%= item ? item.Education_Details_v[3].percentage : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                        &nbsp; &nbsp;
+
+                    </fieldset>
+                </div>
+                <br><br>
+                <div class="third tab" id="third">
+                    <fieldset style="width: 1150px">
+                        <legend>Work Experience</legend>
+                        <div id="c1">
+                            <input type="hidden" name="fhidden[]" value ='<%= item ? item.Work_Experience_v[0].work_ex_id : "" %>'>
+                            <label for="compName">Company Name</label>
+                            <input type="text" name="fCompanyName[]" id="fCompanyName" value ='<%= item ? item.Work_Experience_v[0].company_name : "" %>'>
+                            <!-- <span class="error" style="color: red; font-size: small;"></span> -->
+                            &nbsp; &nbsp;
+                            <label for="designation">Designation</label>
+                            <input type="text" name="fDesignation[]" id="fDesignation" value ='<%= item ? item.Work_Experience_v[0].designation : "" %>'>
+                            <span class="wrong1" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="from">From</label>
+                            <input type="text" name="fFrom[]" id="fFrom" value ='<%= item ? item.Work_Experience_v[0].start_from : "" %>'>
+                            <span class="wrong1" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="to">To</label>
+                            <input type="text" name="fTo[]" id="fTo" value ='<%= item ? item.Work_Experience_v[0].to_end : "" %>'>
+                            <span class="wrong1" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                        </div>
+                        <br>
+                        <div>
+                            <input type="hidden" name="fhidden[]" value ='<%= item ? item.Work_Experience_v[1].work_ex_id : "" %>'>
+                            <label for="compName">Company Name</label>
+                            <input type="text" name="fCompanyName[]" id="sCompanyName" value ='<%= item ? item.Work_Experience_v[1].company_name : "" %>'>
+                            <!-- <span class="error" style="color: red; font-size: small;"></span> -->
+                            &nbsp; &nbsp;
+                            <label for="designation">Designation</label>
+                            <input type="text" name="fDesignation[]" id="sDesignation" value ='<%= item ? item.Work_Experience_v[1].designation : "" %>'>
+                            <span class="wrong2" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="from">From</label>
+                            <input type="text" name="fFrom[]" id="sFrom" value ='<%= item ? item.Work_Experience_v[1].start_from : "" %>'>
+                            <span class="wrong2" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="to">To</label>
+                            <input type="text" name="fTo[]" id="sTo" value ='<%= item ? item.Work_Experience_v[1].to_end : "" %>'>
+                            <span class="wrong2" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                        </div>
+                        <br>
+                        <div>
+                            <input type="hidden" name="fhidden[]" value ='<%= item ? item.Work_Experience_v[2].work_ex_id : "" %>'>
+                            <label for="compName">Company Name</label>
+                            <input type="text" name="fCompanyName[]" id="tCompanyName" value ='<%= item ? item.Work_Experience_v[2].company_name : "" %>'>
+                            <!-- <span class="error" style="color: red; font-size: small;"></span> -->
+                            &nbsp; &nbsp;
+                            <label for="designation">Designation</label>
+                            <input type="text" name="fDesignation[]" id="tDesignation" value ='<%= item ? item.Work_Experience_v[2].designation : "" %>'>
+                            <span class="wrong3" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="from">From</label>
+                            <input type="text" name="fFrom[]" id="tFrom" value ='<%= item ? item.Work_Experience_v[2].start_from : "" %>'>
+                            <span class="wrong3" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="to">To</label>
+                            <input type="text" name="fTo[]" id="tTo" value ='<%= item ? item.Work_Experience_v[2].to_end : "" %>'>
+                            <span class="wrong3" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                        </div>
+                        <br>
+                        <span id="addInput"></span>
+                    </fieldset>
+                    <div class="divForWork">
+                        <div class="add" onclick="add()">Add</div>
+                        <div class="remove" onclick="remove()">Remove</div>
+                    </div>
+                </div>
+                <br>
+
+                <br><br>
+                <div class="forth tab" id="forth">
+                    <fieldset style="width: 450px">
+                        <legend>Language Known</legend>
+                        <input type="hidden" name="hindihide" value="<%= item ? item.Language_Known_v[0].lang_id : '' %>">
+                        <input type="checkbox" name="hin" id="hin" value="hindi" <%= item && item.Language_Known_v[0].language_name.includes('hindi') ? "checked" : "" %>>
+                        <label for="hin"><b>Hindi</b></label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="checkbox" name="red" id="red" value="Yes" <%= item && item.Language_Known_v[0].read_.includes('Yes') ? "checked" : "" %>>
+                        <label for="red">Read</label>
+                        &nbsp; &nbsp;
+                        <input type="checkbox" name="wri" id="wri" value="Yes" <%= item && item.Language_Known_v[0].write_.includes('Yes') ? "checked" : "" %>>
+                        <label for="wri">Write</label>
+                        &nbsp; &nbsp;
+                        <input type="checkbox" name="sp" id="sp" value="Yes" <%= item && item.Language_Known_v[0].speak.includes('Yes') ? "checked" : "" %>>
+                        <label for="sp">Speak</label>
+
+                        <br><br>
+
+                        <input type="hidden" name="enghide" value="<%= item ?item.Language_Known_v[1].lang_id : '' %>">
+                        <input type="checkbox" name="eng" id="eng" value="english" <%= item && item.Language_Known_v[1].language_name.includes('english') ? "checked" : "" %>>
+                        <label for="eng"><b>English</b></label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="checkbox" name="red1" id="red1" value="Yes" <%= item && item.Language_Known_v[1].read_.includes('Yes') ? "checked" : "" %>>
+                        <label for="red1">Read</label>
+                        &nbsp; &nbsp;
+                        <input type="checkbox" name="wri1" id="wri1" value="Yes" <%= item && item.Language_Known_v[1].write_.includes('Yes') ? "checked" : "" %>>
+                        <label for="wri1">Write</label>
+                        &nbsp; &nbsp;
+                        <input type="checkbox" name="sp1" id="sp1" value="Yes" <%= item && item.Language_Known_v[1].speak.includes('Yes') ? "checked" : "" %>>
+                        <label for="sp1">Speak</label>
+
+                        <br><br>
+
+                        <input type="hidden" name="gujhide" value="<%= item ?item.Language_Known_v[2].lang_id : '' %>">
+                        <input type="checkbox" name="guj" id="guj" value="gujarati" <%= item && item.Language_Known_v[2].language_name.includes('gujarati') ? "checked" : "" %>>
+                        <label for="guj"><b>Gujarati</b></label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="checkbox" name="red2" id="red2" value="Yes" <%= item && item.Language_Known_v[2].read_.includes('Yes') ? "checked" : "" %>>
+                        <label for="red2">Read</label>
+                        &nbsp; &nbsp;
+                        <input type="checkbox" name="wri2" id="wri2" value="Yes" <%= item && item.Language_Known_v[2].write_.includes('Yes') ? "checked" : "" %>>
+                        <label for="wri2">Write</label>
+                        &nbsp; &nbsp;
+                        <input type="checkbox" name="sp2" id="sp2" value="Yes" <%= item && item.Language_Known_v[2].speak.includes('Yes') ? "checked" : "" %>>
+                        <label for="sp2">Speak</label>
+
+                        <br><br>
+
+                    </fieldset>
+                </div>
+                <br><br>
+                <div class="fifth tab" id="fifth">
+                    <fieldset style="width: 500px">
+                        <legend>Technology You Known</legend>
+                        <input type="hidden" name="phphide" value="<%= item ?item.Technologies_You_Know_v[0].tyk_id : '' %>">
+                        <input type="checkbox" name="php" id="php" value="php" <%= item && item.Technologies_You_Know_v[0].tech_name.includes('php') ? "checked" : "" %>>
+                        <label for="php"><b>PHP</b></label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" name="tech" id="beg" class="tech" value="beginner" <%= item && item.Technologies_You_Know_v[0].tech_ability == "beginner" ? 'checked' : '' %>>
+                        <label for="beg">Beginner</label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech" id="med" class="tech" value="mediator" <%= item && item.Technologies_You_Know_v[0].tech_ability == "mediator" ? 'checked' : '' %>>
+                        <label for="med">Mediator</label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech" id="exp" class="tech" value="expert" <%= item && item.Technologies_You_Know_v[0].tech_ability == "expert" ? 'checked' : '' %>>
+                        <label for="exp">Expert</label>
+
+                        <br><br>
+
+                        <input type="hidden" name="mysqlhide" value="<%= item ?item.Technologies_You_Know_v[1].tyk_id : ''%>">
+                        <input type="checkbox" name="mysql" id="mysql" value="mysql" <%= item && item.Technologies_You_Know_v[1].tech_name.includes('mysql') ? "checked" : "" %>>
+                        <label for="mysql"><b>MySQL</b></label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" name="tech1" class="tech1" id="beg1" value="beginner" <%= item && item.Technologies_You_Know_v[1].tech_ability == "beginner" ? 'checked' : '' %>>
+                        <label for="beg1">Beginner</label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech1" class="tech1" id="med1" value="mediator" <%= item && item.Technologies_You_Know_v[1].tech_ability == "mediator" ? 'checked' : '' %>>
+                        <label for="med1">Mediator </label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech1" class="tech1" id="exp1" value="expert" <%= item && item.Technologies_You_Know_v[1].tech_ability == "expert" ? 'checked' : '' %>>
+                        <label for="exp1">Expert</label>
+
+                        <br><br>
+
+                        <input type="hidden" name="larahide" value="<%= item ?item.Technologies_You_Know_v[2].tyk_id : '' %>">
+                        <input type="checkbox" name="lara" id="lara" value="laravel" <%= item && item.Technologies_You_Know_v[2].tech_name.includes('laravel') ? "checked" : "" %>>
+                        <label for="lara"><b>Laravel</b></label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" name="tech2" class="tech2" id="beg2" value="beginner" <%= item && item.Technologies_You_Know_v[2].tech_ability == "beginner" ? 'checked' : '' %>>
+                        <label for="beg2">Beginner</label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech2" class="tech2" id="med2" value="mediator" <%= item && item.Technologies_You_Know_v[2].tech_ability == "mediator" ? 'checked' : '' %>>
+                        <label for="med2">Mediator </label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech2" class="tech2" id="exp2" value="expert" <%= item && item.Technologies_You_Know_v[2].tech_ability == "expert" ? 'checked' : '' %>>
+                        <label for="exp2">Expert</label>
+
+                        <br><br>
+
+                        <input type="hidden" name="orahide" value="<%= item ?item.Technologies_You_Know_v[3].tyk_id : '' %>">
+                        <input type="checkbox" name="ora" id="ora" value="oracle" <%= item && item.Technologies_You_Know_v[3].tech_name.includes('oracle') ? "checked" : "" %>>
+                        <label for="ora"><b>Oracle</b></label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" name="tech3" class="tech3" id="beg3" value="beginner" <%= item && item.Technologies_You_Know_v[3].tech_ability == "beginner" ? 'checked' : '' %>>
+                        <label for="beg3">Beginner</label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech3" class="tech3" id="med3" value="mediator" <%= item && item.Technologies_You_Know_v[3].tech_ability == "mediator" ? 'checked' : '' %>>
+                        <label for="med3">Mediator </label>
+                        &nbsp; &nbsp;
+                        <input type="radio" name="tech3" class="tech3" id="exp3" value="expert" <%= item && item.Technologies_You_Know_v[3].tech_ability == "expert" ? 'checked' : '' %>>
+                        <label for="exp3">Expert</label>
+
+                    </fieldset>
+                </div>
+                <br><br>
+                <div class="sixth tab" id="sixth">
+                    <fieldset style="width: 860px">
+                        <legend>Reference Contact</legend>
+                        <div>
+                            <input type="hidden" name="refhide" value="<%= item ? item.Referance_Contact_v[0].ref_id : '' %>">
+                            <label for="">Name</label>
+                            <input type="text" name="refName[]" id="refName" value ='<%= item ? item.Referance_Contact_v[0].ref_name : "" %>'>
+                            <span class="error" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="">Contact Number</label>
+                            <input type="text" name="refNumber[]" id="refNumber" value ='<%= item ? item.Referance_Contact_v[0].phone : "" %>'>
+                            <span class="error" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="">Relation</label>
+                            <input type="text" name="refRelation[]" id="refRelation" value ='<%= item ? item.Referance_Contact_v[0].relation : "" %>'>
+                            <span class="error" style="color: red; font-size: small;"></span>
+                        </div>
+                        <br>
+
+                        <div>
+                            <input type="hidden" name="refhide" value="<%= item ? item.Referance_Contact_v[1].ref_id : '' %>">
+                            <label for="">Name</label>
+                            <input type="text" name="refName[]" id="refName1" value ='<%= item ? item.Referance_Contact_v[1].ref_name : "" %>'>
+                            <span class="error" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="">Contact Number</label>
+                            <input type="text" name="refNumber[]" id="refNumber1" value ='<%= item ? item.Referance_Contact_v[1].phone : "" %>'>
+                            <span class="error" style="color: red; font-size: small;"></span>
+                            &nbsp; &nbsp;
+                            <label for="">Relation</label>
+                            <input type="text" name="refRelation[]" id="refRelation1" value ='<%= item ? item.Referance_Contact_v[1].relation : "" %>'>
+                            <span class="error" style="color: red; font-size: small;"></span>
+                        </div>
+                        <br>
+                        <span id="callInput"></span>
+                    </fieldset>
+                    <div class="divForWork">
+                        <div class="add" onclick="callFunction()">Add</div>
+                        <div class="remove" onclick="removeFunction()">Remove</div>
+                    </div>
+                </div>
+                <br><br>
+
+                <br><br>
+                <div class="seventh tab" id="seventh">
+                    <fieldset style="width: 900px">
+                        <legend>Preference</legend>
+                        <label for="">Prefered Location</label>
+                        <select name="location" id="location">
+                            <option value="">Select Location</option>
+                            <option value="ahmedabad" <%= item && item.preferance_v[0].prefered_location == "ahmedabad" ? 'selected' : '' %>>Ahmedabad</option>
+                            <option value="gandhinagar" <%= item && item.preferance_v[0].prefered_location == "gandhinagar" ? 'selected' : '' %>>Gandhinagar</option>
+                            <option value="texas" <%= item && item.preferance_v[0].prefered_location == "texas" ? 'selected' : '' %>>Texas</option>
+                            <option value="ontario" <%= item && item.preferance_v[0].prefered_location == "ontario" ? 'selected' : '' %>>Ontario</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        &nbsp; &nbsp;
+
+                        <abbr title="Notice Period in Months">Notice Period</abbr>
+                        <input type="text" name="noticePeriod" id="noticePeriod" value ='<%= item ? item.preferance_v[0].notice_period_in_months : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        &nbsp; &nbsp;
+                        <label for="">Expacted CTC</label>
+                        <input type="text" name="expectedCTC" id="expectedCTC" value ='<%= item ? item.preferance_v[0].expected_ctc : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        <br><br>
+                        <label for="">Current CTC</label>
+                        <input type="text" name="currentCTC" id="currentCTC" value ='<%= item ? item.preferance_v[0].current_ctc : "" %>'>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+                        &nbsp; &nbsp;
+                        <label for="">Department</label>
+                        <select name="depart" id="depart">
+                            <option value="">Select Department</option>
+                            <option value="development" <%= item && item.preferance_v[0].department == "development" ? 'selected' : '' %>>Development</option>
+                            <option value="design" <%= item && item.preferance_v[0].department == "design" ? 'selected' : '' %>>Design</option>
+                            <option value="marketing" <%= item && item.preferance_v[0].department == "marketing" ? 'selected' : '' %>>Marketing</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+                    </fieldset>
+                    <% if(display == "show") {%>
+                        <input type="hidden" id="hideid" name="idmate" value="<%= id%>">
+                        <input id="my-button" class="sub" type="button" value="Update">
+                        <% } else {%>
+                            <br><br>
+                            <span id="lasterror" style="color: red; font-size: small; margin-left: 355px;"></span>
+                            <br>
+                            <input id="button" class="sub" type="submit" value="Submit">
+                    <%}%>
+                </div>
+            </div>
+            <br>
+
+        </form>
+        <div class="btns">
+            <div class="pre" id="pre" onclick="previous()">Previous</div>
+            <div class="next" id="next" onclick="next()">Next</div>
+        </div>
+    
+
+    <script type="text/javascript" src="/stepForm.js"></script>
+</body>
+
+</html>
