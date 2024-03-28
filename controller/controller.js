@@ -25,7 +25,7 @@ const allEvents = (req, res) => {
     res.render('allEvents');
 }
 
-const pagination=async (req, res) => {
+const pagination = async (req, res) => {
     let orderBy = req.query.orderBy || 'std_id'
     let page = req.query.page;
     if(page == undefined) {
@@ -67,22 +67,20 @@ const attendance_report = (req, res) => {
     const countrows = 'select count(*) as total from Student_Master_27';
     
     con.query(countrows, (err, countResult) => {
-        if(err) throw err;
+        if (err) throw err;
         const totalRecords = countResult[0].total;
-        const totalPages = Math.ceil(totalRecords/recordPP);
+        const totalPages = Math.ceil(totalRecords / recordPP);
 
         let month = Number(req.query.month) || 12;
-        console.log(month);
 
-        const sql = 
-        `select Student_Master_27.std_id, first_name, count(attendance) as Present_In_Dec, round(count(Student_Master_27.std_id) / 0.31, 2) as Percentage 
+        const sql = `select Student_Master_27.std_id, first_name, count(attendance) as Present_In_Dec, round(count(Student_Master_27.std_id) / 0.31, 2) as Percentage 
         from Student_Master_27 
         inner join Attendance_Master_27 
         on Student_Master_27.std_id = Attendance_Master_27.std_id 
         where attendance = '1' and MONTH(Attendance_Master_27.date_of_att)=${month} group by std_id order by std_id limit ${offset}, ${recordPP}`;
         con.query(sql, (err, result) => {
-            if(err) throw err;
-            res.render('attendance_report_table', {data: result, month:month, currentPage: page, totalPages:totalPages, });
+            if (err) throw err;
+            res.render('attendance_report_table', { data: result, month: month, currentPage: page, totalPages: totalPages, });
         });
 
     });
@@ -156,7 +154,6 @@ const rglr_search = (req, res) => {
 const get_data_rglr_search = (req, res) => {
     var query;
     var queryss;
-    console.log("query: ", req.body.str);
     if (req.body.str) {
         query = req.body.str;
         queryss = req.body.str;
@@ -353,7 +350,6 @@ const delimiterSearchResult = (req, res) => {
     }
 
     sql = sql.slice(0, sql.length - 6);
-    console.log(sql);
     con.query(sql, (err, result) => {
         res.render('delimiter_search', { data: result, display: "show", query: query });
     });
@@ -856,7 +852,6 @@ const updateStepForm = (req, res) => {
     let sqlNine = `update Technologies_You_Know_v 
 	    Set tech_name = '${req.body.ora}', tech_ability = '${req.body.tech}'
 	    where tyk_id = ${req.body.orahide}`;
-    console.log(sqlNine);
     con.query(sqlNine, (err, result) => {
         if (err) throw err;
     });
@@ -995,7 +990,6 @@ const homePagePost = (req, res) => {
                     // console.log('shivam', (result[0].createpass == req.body.pass) == true);
 
                     if ((result[0].createpass == req.body.pass) == true) {
-                        console.log(":sdoivbisdvvsdivvds");
                         jwt.sign({ id: result[0].id }, 'secretKey', { expiresIn: '300s' }, (err, token) => {
 
                             res.cookie('token', token).send('Cookie-Parser');
@@ -1020,7 +1014,6 @@ const homePageGet = (req, res) => {
         if(err) {
             res.send({result: "Invalid token"});
         } else {
-            console.log(authData);
             if(authData.id !== 0) {
                 res.render('allInOne');
             }
@@ -1099,7 +1092,6 @@ const authentication = (req, res, next) => {
                 // res.send({result: "Invalid token"});
                 res.redirect('/login');
             } else {
-                console.log(authData);
                 if(authData.id !== 0) {
                     // res.render('allInOne');
                     next();
