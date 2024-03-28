@@ -2,7 +2,13 @@ const express = require('express');
 
 const router = express.Router(); 
 
-const {homePage, dynamicTable, kukuCube, ticTacToe, allEvents, pagination, attendance_report, result_table, one_std_result, rglr_search, get_data_rglr_search, filter, searchById, getSearchedDataById, searchByIdShowMore, searchbyANDOR, delimiterSearch, delimiterSearchResult, formValidation, formValidationUpdate, formValidationUpdateData, formValidationInsert, fetchPosts, fetchShowMore, stepForm, state, stepFormSubmit, getDataStepForm, updateStepForm, timeConverter, registrationForm, registrationFormSubmit, activated, passwordSubmit, login, homePagePost, homePageGet, forgot, email, expire, regenerated, authentication, logout} = require('../controller/controller')
+const {homePage, dynamicTable, kukuCube, ticTacToe, allEvents, pagination, attendance_report, result_table, one_std_result, rglr_search, get_data_rglr_search, filter, searchById, getSearchedDataById, searchByIdShowMore, searchbyANDOR, delimiterSearch, delimiterSearchResult, formValidation, formValidationUpdate, formValidationUpdateData, formValidationInsert, fetchPosts, fetchShowMore, stepForm, state, stepFormSubmit, getDataStepForm, updateStepForm, timeConverter, registrationForm, registrationFormSubmit, activated, passwordSubmit, login, homePagePost, homePageGet, forgot, email, expire, regenerated, authentication, logout, cssOne, csstwo, cssthree,} = require('../controller/controller')
+
+router.get('/ehys-css-task-1', authentication, cssOne);
+
+router.get('/awanHoster-css-task-2', authentication, csstwo);
+
+router.get('/hireX-css-task-3', authentication, cssthree);
 
 router.get('/homePage', authentication, homePage);
 

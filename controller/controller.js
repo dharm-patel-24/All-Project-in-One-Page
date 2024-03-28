@@ -5,6 +5,18 @@ const jwt = require('jsonwebtoken');
 var randomize = require('randomatic');
 var md5 = require('md5');
 
+const cssOne = (req, res) => {
+    res.render('ehya_CSS_One');
+}
+
+const csstwo = (req, res) => {
+    res.render('Awan_CSS_Two');
+}
+
+const cssthree = (req, res) => {
+    res.render('hire_CSS_Three');
+}
+
 const homePage = (req, res) => {
     res.render('allInOne');
 }
@@ -1109,4 +1121,4 @@ const logout = (req, res) => {
     res.redirect('/login');
 }
 
-module.exports = {homePage, dynamicTable, kukuCube, ticTacToe, allEvents, pagination, attendance_report, result_table, one_std_result, rglr_search, get_data_rglr_search, filter, searchById, getSearchedDataById, searchByIdShowMore, searchbyANDOR, delimiterSearch, delimiterSearchResult, formValidation, formValidationUpdate, formValidationUpdateData, formValidationInsert, fetchPosts, fetchShowMore, stepForm, state, stepFormSubmit, getDataStepForm, updateStepForm, timeConverter, registrationForm, registrationFormSubmit, activated, passwordSubmit, login, homePagePost, homePageGet, forgot, email, expire, regenerated, authentication, logout}
+module.exports = {cssOne, csstwo, cssthree, homePage, dynamicTable, kukuCube, ticTacToe, allEvents, pagination, attendance_report, result_table, one_std_result, rglr_search, get_data_rglr_search, filter, searchById, getSearchedDataById, searchByIdShowMore, searchbyANDOR, delimiterSearch, delimiterSearchResult, formValidation, formValidationUpdate, formValidationUpdateData, formValidationInsert, fetchPosts, fetchShowMore, stepForm, state, stepFormSubmit, getDataStepForm, updateStepForm, timeConverter, registrationForm, registrationFormSubmit, activated, passwordSubmit, login, homePagePost, homePageGet, forgot, email, expire, regenerated, authentication, logout}
