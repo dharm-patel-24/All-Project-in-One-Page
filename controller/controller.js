@@ -180,15 +180,11 @@ const get_data_rglr_search = (req, res) => {
     } else {
         page = 1;
     }
-    //To get total number of record
-    // const countrows = 'select count(*) as total from Student_Master_27';
 
     con.query(queryss, (err, countResult) => {
         
-        // if (err) throw err;
         if (err) {
             res.end("<h3><center>Wrong Query</center></h3>");
-            // console.log("Wrong");
         }
         const recordPP = 17;
         const totalRecords = countResult.length;
@@ -713,7 +709,6 @@ const stepFormSubmit = (req, res) => {
         }
 
         res.send('Data Inserted!');
-        // res.redirect('/');
     });
 }
 
@@ -891,25 +886,20 @@ const registrationFormSubmit = (req, res) => {
 
             if (result[0].email == 1) {
                 res.send('You are already Registered!');
-                // console.log('You are already !');
             }
             else {
                 let sql = `insert into registration_table (firstname, lastname, email, phone, gender, dob, status) values('${req.body.firstname}', '${req.body.lastname}', '${req.body.email}', '${req.body.phone}', '${req.body.gender}', '${req.body.dob}', 'Inactive')`;
-                // let result = await con.query(sql);
 
                 con.query(sql, (err, result) => {
                     if (err) {
                         console.log(err);
                         return reject(err);
                     }
-                    // resolve(result);
                     return resolve(result);
                 });
 
             }
             return resolve(result);
-            // console.log('abab',result[0].email);
-            // resolve(result);
 
         });
     });
@@ -926,8 +916,6 @@ const activated = (req, res) => {
             }
             generatedTime = result[0].createdtime;
             dateDifference = new Date - new Date(generatedTime);
-            // console.log('Generated Time', generatedTime);
-            // console.log('Current Time', dateDifference);
             if (dateDifference < 10000) {
                 res.render('password');
             } else {
@@ -945,20 +933,15 @@ const activated = (req, res) => {
             return resolve(result);
         });
 
-        // var user_timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     });
 }
 
 const passwordSubmit = (req, res) => {
     return new Promise((resolve, reject) => {
         let password = req.body.createpass;
-        // console.log(password);
         let salt = randomize('Aa0!', 4);
-        // console.log("Salt: ",salt);
         let combo = password + salt;
-        // console.log('Combo', combo);
         let token = md5(combo);
-        // console.log('Token',token);
 
         let sql = `update registration_table 
         set status = 'active', createpass = '${req.body.createpass}', confirmpass = '${req.body.confirmpass}',  token = '${token}'
@@ -968,7 +951,6 @@ const passwordSubmit = (req, res) => {
                 console.log(err);
                 return reject(err);
             }
-            // resolve(result);
             return resolve(result);
 
         });
@@ -987,7 +969,6 @@ const homePagePost = (req, res) => {
                 console.log(err);
                 return reject(err);
             }
-            // console.log("check for email: ", result[0].email);
             if (result[0].email == 1) {
                 let pass = `select id, createpass from registration_table where email = '${req.body.email}';`;
                 con.query(pass, (err, result) => {
@@ -995,17 +976,11 @@ const homePagePost = (req, res) => {
                         console.log(err);
                         return reject(err);
                     }
-                    // console.log("check for pass: ", result[0]);
-                    // console.log(result[0].createpass == req.body.pass);
-                    // console.log('get from browser', req.body.pass);
-
-                    // console.log('shivam', (result[0].createpass == req.body.pass) == true);
 
                     if ((result[0].createpass == req.body.pass) == true) {
                         jwt.sign({ id: result[0].id }, 'secretKey', { expiresIn: '300s' }, (err, token) => {
 
                             res.cookie('token', token).send('Cookie-Parser');
-                            // res.send({ flag: true, token: token });
                         });
                     }
                     else {
@@ -1052,7 +1027,6 @@ const email = (req, res) => {
             res.render('password');
             return resolve(result);
         });
-        // var user_timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     });
 }
 
@@ -1080,8 +1054,6 @@ const regenerated = (req, res) => {
             }
             generatedTime = result[0].createdtime;
             dateDifference = new Date - new Date(generatedTime);
-            // console.log('Generated Time', generatedTime);
-            // console.log('Current Time', dateDifference);
             if (dateDifference < 10000) {
                 res.render('password');
             } else {
@@ -1089,7 +1061,6 @@ const regenerated = (req, res) => {
             }
             return resolve(result);
         });
-        // var user_timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     });
 }
 
@@ -1101,11 +1072,9 @@ const authentication = (req, res, next) => {
     } else {
         jwt.verify(req.cookies.token, 'secretKey', (err, authData) => {
             if(err) {
-                // res.send({result: "Invalid token"});
                 res.redirect('/login');
             } else {
                 if(authData.id !== 0) {
-                    // res.render('allInOne');
                     next();
                 }
                 else {

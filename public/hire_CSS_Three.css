@@ -179,7 +179,6 @@ header {
     height: 250px;
     width: 250px;
     border-radius: 50%;
-    /* margin-top: 50px; */
     right: 0;
     position: absolute;
     z-index: 1;
@@ -212,7 +211,6 @@ header {
 }
 
 .first-right {
-    /* margin-right: -20px; */
     position: relative;
     padding-top: 50px;
     width: 50%;
@@ -835,7 +833,6 @@ hr {
     width: 50%;
 }
 .y2 {
-    /* margin-top: 60px; */
     width: 50%;
 }
 .get {
@@ -860,8 +857,6 @@ hr {
     font-size: x-large;
     font-weight: 500;
     margin-bottom: 20px;
-    /* display: flex;
-    justify-content: space-between; */
     background-color: var(--YELLOW2);
     border: none;
     margin-top: 10px;
@@ -967,11 +962,9 @@ hr {
 .forth1 {
     font-size: large;
     margin-bottom: 40px;
-    /* font-weight: 400; */
 }
 .forth2 {
     font-size: 24px;
-    /* font-weight: 400; */
     width: 200px;
 }
 .terms {

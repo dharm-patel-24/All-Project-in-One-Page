@@ -252,7 +252,6 @@ body {
 
 .packdetail {
     background-color: white;
-    /* color: white; */
     width: 17%;
     margin-right: 40px;
     padding-top: 10px;
@@ -336,7 +335,6 @@ body {
     width: 200px;
     font-size: xx-large;
     margin-bottom: 10px;
-    /* opacity: 0.5; */
 }
 .options {
     width: 30%;
@@ -352,8 +350,6 @@ body {
 
 .theirDetails {
     margin-left: 90px;
-    /* position: absolute; */
-    /* transform: translateX(100%); */
 }
 .maintt {
     font-size: 50px;
@@ -365,8 +361,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* overflow: hidden; */
-    /* position: relative; */
 }
 
 .subtt {
@@ -472,7 +466,6 @@ body {
     background-color: #f6f9ff;
     padding: 15px 15px;
     margin-right: 40px;
-    /* width: 77%; */
 }
 
 .subdiv {
