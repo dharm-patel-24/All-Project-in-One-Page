@@ -26,9 +26,11 @@
 </head>
 
 <body>
-    <h3>Here is the list of Tasks which i have completed yet</h3>
+    <div class="d-flex" style="background-color: rgb(72, 123, 204);">
+        <button class="btn btn-dark" style="margin-left: 1750px;" type="button" onclick="whenClick()">Logout</button>
+    </div>
     <div>
-        <table class="table table-hover table-bordered w-25" style="margin: 0 auto">
+        <table class="table table-hover table-bordered w-25 rounded-3" style="margin: 40px auto;">
             <thead class="table-dark">
                 <tr>
                     <th class=" text-center">No.</th>
@@ -111,9 +113,7 @@
             </tbody>
         </table>
     </div>
-    <div style="text-align: center;">
-        <button class="btn btn-primary"  type="button" onclick="whenClick()">Logout</button>
-    </div>
+    
     <script>
         function whenClick() {
             window.location.href = "http://localhost:8080/logout";
