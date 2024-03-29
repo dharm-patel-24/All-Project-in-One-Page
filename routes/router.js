@@ -96,6 +96,4 @@ router.get('/regenerated', regenerated);
 
 router.get('/logout', logout);
 
-
-
 module.exports = router;
