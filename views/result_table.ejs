@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +11,23 @@
         }
     </style>
 </head>
+
 <body>
     <h1 style="text-align: center;">Dharm Patel</h1>
 
     <div class="btns" style="display: flex; width: 12%; margin: auto; justify-content: space-around;">
-        <a href='/result-report?page=1'><button <%=currentPage==1 ? 'disabled' : '' %>><<</button></a>
+        <a href='/result-report?page=1'><button <%=currentPage==1 ? 'disabled' : '' %>><< </button></a>
 
         <a href='/result-report?page=<%=Math.max(1, Number(currentPage)-1)%>'"><button <%= currentPage ==1 ? 'disabled' : '' %>><</button></a>
 
-        <button class=" currentPage"><%= currentPage %></button>
+        <button class=" currentPage">
+            <%= currentPage %></button>
 
-        <a href='/result-report?page=<%=Math.min(totalPages, Number(currentPage)+1) %>'><button
+                <a href='/result-report?page=<%=Math.min(totalPages, Number(currentPage)+1) %>'><button
                         <%=currentPage==totalPages ? 'disabled' : '' %>>></button></a>
 
-        <a href='/result-report?page=<%=totalPages%>'><button <%=currentPage==totalPages ? 'disabled' : '' %>>>></button></a>
+                <a href='/result-report?page=<%=totalPages%>'><button <%=currentPage==totalPages ? 'disabled' : ''
+                        %>>>></button></a>
 
     </div>
     <br><br>
@@ -58,34 +62,34 @@
                     <%= item.practical_marks_of_terminal %>
                 </td>
                 <td>
-                    <%= item.theory_marks_of_terminal %> 
+                    <%= item.theory_marks_of_terminal %>
                 </td>
                 <td>
-                    <%= item.practical_marks_of_prelim %> 
+                    <%= item.practical_marks_of_prelim %>
                 </td>
                 <td>
-                    <%= item.theory_marks_of_prelim %> 
+                    <%= item.theory_marks_of_prelim %>
                 </td>
                 <td>
-                    <%= item.practical_marks_of_final %> 
+                    <%= item.practical_marks_of_final %>
                 </td>
                 <td>
-                    <%= item.theory_marks_of_final %> 
+                    <%= item.theory_marks_of_final %>
                 </td>
                 <td>
-                    <%= item.practical_total_marks %> 
+                    <%= item.practical_total_marks %>
                 </td>
                 <td>
-                    <%= item.theory_total_marks %> 
+                    <%= item.theory_total_marks %>
                 </td>
-                <!-- <%console.log(item.total_marks)%> -->
-                
+
                 <td>
-                    <button type="submit" onclick="window.location.href='/one-std-result?id=<%= item.std_id %>'">More Details</button>
+                    <button type="submit" onclick="window.location.href='/one-std-result?id=<%= item.std_id %>'">More
+                        Details</button>
                 </td>
             </tr>
-        <% }); %>
+            <% }); %>
     </table>
 </body>
-</html>
 
+</html>

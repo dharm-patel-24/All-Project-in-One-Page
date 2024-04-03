@@ -9,12 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-const jwt = require('jsonwebtoken');
-
-const cookieParser = require('cookie-parser'); 
-app.use(cookieParser()); 
-
-
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 const useRouter = require('./routes/router');
 
