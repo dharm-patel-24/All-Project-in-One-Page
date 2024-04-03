@@ -37,7 +37,7 @@ const allEvents = (req, res) => {
     res.render('allEvents');
 }
 
-const pagination = async (req, res) => {
+const pagination = (req, res) => {
     let orderBy = req.query.orderBy || 'std_id'
     let page = req.query.page;
     if(page == undefined) {
@@ -50,7 +50,7 @@ const pagination = async (req, res) => {
     const countrows = 'select count(*) as total from Student_Master_26';
 
     try {
-        await con.query(countrows, (err, countResult) => {
+        con.query(countrows, (err, countResult) => {
             if(err) throw err;
             const totalRecords = countResult[0].total;
             const totalPages = Math.ceil(totalRecords/recordPP);
@@ -1037,7 +1037,7 @@ const expire = (req, res) => {
 const regenerated = (req, res) => {
     return new Promise((resolve, reject) => {
         var dateDifference;
-
+        
         let upd = `update registration_table set createdtime = current_timestamp(6) where email = '${req.query.email}'`;
         con.query(upd, (err, result) => {
             if (err) {
