@@ -3,29 +3,17 @@ const express = require('express');
 const router = express.Router();
 
 const { homePage, timeConverter, registrationForm, registrationFormSubmit, activated, passwordSubmit, login, homePagePost, homePageGet, forgot, email, expire, regenerated, authentication, logout } = require('../controller/controller');
-
 const { cssOne, csstwo, cssthree } = require('../controller/css_tasks/controller');
-
 const { dynamicTable, kukuCube, ticTacToe, allEvents } = require('../controller/js_task/controller');
-
 const pagination = require('../controller/pagination/controller');
-
 const attendance_report = require('../controller/attendance_report/controller');
-
 const { result_table, one_std_result } = require('../controller/result_table/controller');
-
 const { rglr_search, get_data_rglr_search } = require('../controller/rglr_search/controller');
-
 const filter = require('../controller/filter/controller');
-
 const { searchById, getSearchedDataById, searchByIdShowMore, searchbyANDOR } = require('../controller/search_by_id/controller');
-
 const { delimiterSearch, delimiterSearchResult } = require('../controller/delimiter_search/controller');
-
 const { formValidation, formValidationUpdate, formValidationUpdateData, formValidationInsert } = require('../controller/form_validation/controller');
-
 const { fetchPosts, fetchShowMore } = require('../controller/fetch_api/controller');
-
 const { stepForm, state, stepFormSubmit, getDataStepForm, updateStepForm } = require('../controller/step_form/controller');
 
 router.get('/ehys-css-task-1', authentication, cssOne);

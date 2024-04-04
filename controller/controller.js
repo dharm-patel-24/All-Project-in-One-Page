@@ -1,7 +1,7 @@
 const con = require('../database');
 const jwt = require('jsonwebtoken');
-var randomize = require('randomatic');
-var md5 = require('md5');
+let randomize = require('randomatic');
+let md5 = require('md5');
 
 const homePage = (req, res) => {
     res.render('allInOne');
@@ -48,7 +48,7 @@ const registrationFormSubmit = (req, res) => {
 
 const activated = (req, res) => {
     return new Promise((resolve, reject) => {
-        var dateDifference;
+        let dateDifference;
 
         let select = `select createdtime from registration_table where email = '${req.query.email}'`;
         con.query(select, (err, result) => {
@@ -138,7 +138,7 @@ const homePagePost = (req, res) => {
 }
 
 const homePageGet = (req, res) => {
-    jwt.verify(req.cookies.token, 'secretKey', (err, authData) => {
+    jwt.verify(req.cookies.token, process.env.SECRET_KEY, (err, authData) => {
         if (err) {
             res.send({ result: "Invalid token" });
         } else {
@@ -177,7 +177,7 @@ const expire = (req, res) => {
 
 const regenerated = (req, res) => {
     return new Promise((resolve, reject) => {
-        var dateDifference;
+        let dateDifference;
 
         let upd = `update registration_table set createdtime = current_timestamp(6) where email = '${req.query.email}'`;
         con.query(upd, (err, result) => {
@@ -206,7 +206,7 @@ const regenerated = (req, res) => {
 }
 
 const authentication = (req, res, next) => {
-    var token = req.cookies.token;
+    let token = req.cookies.token;
 
     if (typeof token === 'undefined') {
         res.redirect('/login');

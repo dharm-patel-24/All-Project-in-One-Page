@@ -1,7 +1,7 @@
 const con = require('../../database');
 
 const stepForm = (req, res) => {
-  var id = req.query.id;
+  let id = req.query.id;
   res.render('stepForm', { item: '', display: "none", id: id });
 }
 
@@ -30,7 +30,7 @@ const stepFormSubmit = (req, res) => {
   con.query(sql, (err, result) => {
     if (err) throw err;
 
-    var empPK = result.insertId;
+    let empPK = result.insertId;
 
     for (let i = 0; i < req.body.courseName.length; i++) {
       con.query(`insert into Education_Details_v (candidate_id, course_name, passing_year, percentage) values(${empPK}, '${req.body.courseName[i]}', ${req.body.passingYear[i]}, ${req.body.percentage[i]})`, (err, result) => {
@@ -105,8 +105,8 @@ const stepFormSubmit = (req, res) => {
 }
 
 const getDataStepForm = (req, res) => {
-  var id = req.params.id;
-  var allData = {};
+  let id = req.params.id;
+  let allData = {};
   const sql = `select * from Basic_Detail_v where candidate_id = ${req.params.id}`;
   con.query(sql, (err, result) => {
     if (err) throw err;

@@ -5,7 +5,7 @@ const formValidation = (req, res) => {
 }
 
 const formValidationUpdate = (req, res) => {
-  var allData = {};
+  let allData = {};
   const sql = `select * from Basic_Detail_v where candidate_id = ${req.params.id}`;
   con.query(sql, (err, result) => {
     if (err) throw err;
@@ -162,7 +162,7 @@ const formValidationInsert = (req, res) => {
   con.query(sql, (err, result) => {
     if (err) throw err;
 
-    var empPK = result.insertId;
+    let empPK = result.insertId;
 
     for (let i = 0; i < req.body.courseName.length; i++) {
       con.query(`insert into Education_Details_v (candidate_id, course_name, passing_year, percentage) values(${empPK}, '${req.body.courseName[i]}', ${req.body.passingYear[i]}, ${req.body.percentage[i]})`, (err, result) => {

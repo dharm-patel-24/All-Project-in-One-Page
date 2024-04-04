@@ -5,7 +5,7 @@ const searchById = (req, res) => {
 }
 
 const getSearchedDataById = (req, res) => {
-  var query = req.body.str;
+  let query = req.body.str;
 
   const sql = `select * from Student_Master_26 where std_id in (${query})`;
   con.query(sql, (err, result) => {
@@ -19,12 +19,12 @@ const searchByIdShowMore = (req, res) => {
 }
 
 const searchbyANDOR = (req, res) => {
-  var last_name = req.body.last_name;
-  var city = req.body.city;
-  var stream = req.body.stream;
-  var age = req.body.age;
-  var gender = req.body.gender;
-  var operation = req.body.operation;
+  let last_name = req.body.last_name;
+  let city = req.body.city;
+  let stream = req.body.stream;
+  let age = req.body.age;
+  let gender = req.body.gender;
+  let operation = req.body.operation;
 
   const sql = `select * from Student_Master_26 where last_name like '${last_name}%' ${operation} city like '${city}%' ${operation} stream like '${stream}%' ${operation} age like '${age}%' ${operation} gender like '${gender}%'`;
   con.query(sql, [city, stream, age, gender], (err, result) => {

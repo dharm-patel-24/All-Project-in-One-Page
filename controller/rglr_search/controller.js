@@ -5,8 +5,8 @@ const rglr_search = (req, res) => {
 }
 
 const get_data_rglr_search = (req, res) => {
-  var query;
-  var queryss;
+  let query;
+  let queryss;
   if (req.body.str) {
     query = req.body.str;
     queryss = req.body.str;
@@ -15,7 +15,7 @@ const get_data_rglr_search = (req, res) => {
     queryss = req.query.querys;
   }
 
-  var page;
+  let page;
   if (req.query.page) {
     page = req.query.page;
   } else {
