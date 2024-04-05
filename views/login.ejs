@@ -19,9 +19,10 @@
         .main {
             font-size: large;
             border-radius: 9px;
-            margin: 0px 700px;
+            margin: 0px 660px;
             background-color: #859FEC;
             padding: 20px 50px;
+            width: 250px;
         }
 
         .big {
@@ -46,8 +47,9 @@
         .btn:hover {
             background-color: #2a5aeb;
         }
+
         a {
-            margin: 0px 100px;
+            margin: 0px 60px;
         }
     </style>
 </head>
@@ -58,7 +60,7 @@
         <div class="main">
             <label for="">Email</label> <br><br>
             <input type="text" class="big" name="email" id="email">
-            <br><br><br>
+            <br><br>
             <label for="">Password</label> <br><br>
             <input type="text" class="big" name="pass" id="pass">
             <div id="belowpass" style="color: red; font-size: medium;"></div>
@@ -70,15 +72,10 @@
         </div>
     </form>
     <script>
-
-
         document.getElementById('log').addEventListener('submit', (event) => {
             event.preventDefault();
             var email = document.getElementById('email').value
             var pass = document.getElementById('pass').value
-
-            // console.log('Email:' + email);
-            // console.log('Password:' + pass);
 
             let form = document.getElementById('log');
             let form_data = new FormData(form);
@@ -89,18 +86,7 @@
 
             xhr.onload = function () {
                 if (this.status == 200) {
-                    // console.log('If not match',this.responseText);
-                    // window.location.href = "http://localhost:8080/homePage";
                     window.location.href = "http://localhost:8080/homePage";
-
-                    // let responseText = JSON.parse(this.responseText);
-                    // console.log(this.responseText);
-                    // if(responseText.flag == false) {
-                    //     document.getElementById("belowpass").innerHTML = responseText.msg;
-                    // }
-                    // else {
-                    // window.location.href = "http://localhost:8080/homePage";
-                    // }
                 }
             }
             xhr.send(new URLSearchParams(form_data));

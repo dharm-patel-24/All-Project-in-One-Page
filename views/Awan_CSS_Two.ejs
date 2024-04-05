@@ -219,7 +219,7 @@
                             <p>Magento is an open-source e-commerce platform written in PHP</p>
                         </div>
                         <div class="subtt">
-                            <p>Magento is a platform with built-in PHP, which helps programmers create eCommerce websites. It was released on March 31, 2008, by Varien and developed on Zend Framework.</p>
+                            <p>Magento is a platform with built-in PHP, which helps programmers create eCommerce websites. It was released on March 31, 2008, by letien and developed on Zend Framework.</p>
                         </div>
                         <div class="opts">
                             <div class="cb1">
@@ -527,34 +527,34 @@
 
 function changeContant(event, language) {
 
-// var a = document.getElementsByClassName("opti");
+// let a = document.getElementsByClassName("opti");
 // for(let i=0; i<a.length; i++) {
 //     a[i].style.opacity = "0.5";
 // }
 
-var x = document.getElementsByClassName("theirDetails");
+let x = document.getElementsByClassName("theirDetails");
 for(let i=0; i<x.length; i++) {
     x[i].style.display = "none";
 }
 
-var selected = language;
+let selected = language;
 document.getElementById(selected).style.display = "block";
 // event.currentTarget.className +="active";
 // document.getElementsByClassName(selected)[0].style.opacity = "1";
 }
 
 
-var btn=document.getElementById("next");
-var btn1=document.getElementById("pre");
+let btn=document.getElementById("next");
+let btn1=document.getElementById("pre");
 
 btn.addEventListener("click",scroll);
 btn1.addEventListener("click",scroll);
 
 
 function scroll() {
-    var direction = event.target.id;
+    let direction = event.target.id;
 
-    var row = document.getElementById("scrollRow");
+    let row = document.getElementById("scrollRow");
     if(direction=="next") {
         row.scrollLeft+=250;
     }else {

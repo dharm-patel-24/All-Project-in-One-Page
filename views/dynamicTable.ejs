@@ -77,17 +77,17 @@
 
     <script>
         function addrow() {
-            var table = document.getElementById("mytable");
-            var cols = table.rows[0].cells.length;
-            var row = table.insertRow(table.rows.length);
-            for (var i = 0; i < cols; i++) {
-                var cell = row.insertCell(i);
+            let table = document.getElementById("mytable");
+            let cols = table.rows[0].cells.length;
+            let row = table.insertRow(table.rows.length);
+            for (let i = 0; i < cols; i++) {
+                let cell = row.insertCell(i);
             }
         }
 
         function delrow() {
-            var mytable = document.getElementById("mytable");
-            var rows = mytable.rows.length;
+            let mytable = document.getElementById("mytable");
+            let rows = mytable.rows.length;
 
             if (mytable.rows.length > 2) {
                 mytable.deleteRow(rows - 1);
@@ -95,21 +95,21 @@
         }
 
         function addcol() {
-            var table = document.getElementById("mytable");
-            var rws = table.rows;
-            var cols = table.rows[0].cells.length;
-            for (var i = 0; i < rws.length; i++) {
-                var cell = rws[i].insertCell(cols);
+            let table = document.getElementById("mytable");
+            let rws = table.rows;
+            let cols = table.rows[0].cells.length;
+            for (let i = 0; i < rws.length; i++) {
+                let cell = rws[i].insertCell(cols);
             }
         }
 
         function delcol() {
-            var mytable = document.getElementById("mytable");
-            var rowcount = mytable.rows.length;
+            let mytable = document.getElementById("mytable");
+            let rowcount = mytable.rows.length;
             let columns = mytable.rows[0].cells.length;
-            if(columns > 2) {
-                for(var i = 0; i< rowcount; i++) {
-                mytable.rows[i].deleteCell(-1); 
+            if (columns > 2) {
+                for (let i = 0; i < rowcount; i++) {
+                    mytable.rows[i].deleteCell(-1);
                 }
             }
         }

@@ -46,6 +46,7 @@
         .btn:hover {
             background-color: #2a5aeb;
         }
+
         a {
             margin: 0px 100px;
         }
@@ -67,12 +68,12 @@
         </div>
     </form>
     <script>
-function randomStr(len, arr) {
+        function randomStr(len, arr) {
             let ans = '';
             for (let i = len; i > 0; i--) {
                 ans += arr[(Math.floor(Math.random() * arr.length))];
             }
-            var email = document.getElementById('email').value;
+            let email = document.getElementById('email').value;
             document.getElementById('black').innerHTML = "Click on this link for Activation: ";
             document.getElementById('msg').innerHTML = "http://localhost:8090/regenerated/" + email;
             document.getElementById('msg').setAttribute('href', '/regenerated/?email=' + email);
