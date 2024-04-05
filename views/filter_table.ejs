@@ -46,7 +46,7 @@
     <h1 style="text-align: center;">Dharm Patel</h1>
 
     <div class="btns" style="display: flex; width: 12%; margin: auto; justify-content: space-around;">
-        <a href='/filter?page=1&orderBy=<%= orderBy %>'><button <%=currentPage==1 ? 'disabled' : '' %>><<</button></a>
+        <a href='/filter?page=1&orderBy=<%= orderBy %>'><button <%=currentPage==1 ? 'disabled' : '' %>><<< /button></a>
 
         <a href='/filter?page=<%=Math.max(1, Number(currentPage)-1)%>&orderBy=<%= orderBy %>'"><button <%= currentPage ==1 ? 'disabled' : '' %>><</button></a>
 
@@ -56,8 +56,8 @@
                 <a href='/filter?page=<%=Math.min(totalPages, Number(currentPage)+1) %>&orderBy=<%= orderBy %>'><button
                         <%=currentPage==totalPages ? 'disabled' : '' %>>></button></a>
 
-                <a href='/filter?page=<%=totalPages%>&orderBy=<%= orderBy %>'><button <%=currentPage==totalPages ? 'disabled'
-                        : '' %>>>></button></a>
+                <a href='/filter?page=<%=totalPages%>&orderBy=<%= orderBy %>'><button <%=currentPage==totalPages
+                        ? 'disabled' : '' %>>>></button></a>
 
     </div>
     <br><br>
@@ -89,9 +89,11 @@
 
                         <span>Student Id</span>
                         <div class="arr">
-                            <a href='/filter?page=1&orderBy=std_id&order=asc' <% if(order!='desc' && orderBy=='std_id' ) { %> style="opacity:1" <% } %>
+                            <a href='/filter?page=1&orderBy=std_id&order=asc' <% if(order!='desc' && orderBy=='std_id' )
+                                { %> style="opacity:1" <% } %>
                                     class="up">&uarr;</a> <br>
-                            <a href='/filter?page=1&orderBy=std_id&order=desc' <% if(order=='desc' && orderBy=='std_id' ) { %> style="opacity:1" <% } %>
+                            <a href='/filter?page=1&orderBy=std_id&order=desc' <% if(order=='desc' && orderBy=='std_id'
+                                ) { %> style="opacity:1" <% } %>
                                     class="down">&darr;</a>
                         </div>
                     </div>
@@ -100,8 +102,8 @@
                     <div class="main">
                         <span>First Name</span>
                         <div class="arr">
-                            <a href='/filter?page=1&orderBy=first_name&order=asc' <% if(order!='desc' && orderBy=='first_name'
-                                ) { %> style="opacity:1" <% } %> class="up">&uarr;</a> <br>
+                            <a href='/filter?page=1&orderBy=first_name&order=asc' <% if(order!='desc' &&
+                                orderBy=='first_name' ) { %> style="opacity:1" <% } %> class="up">&uarr;</a> <br>
                             <a href='/filter?page=1&orderBy=first_name&order=desc' <% if(order=='desc' &&
                                 orderBy=='first_name' ) { %> style="opacity:1" <% } %> class="down">&darr;</a>
                         </div>
@@ -122,8 +124,8 @@
                     <div class="main">
                         <span>Percentage of Att.</span>
                         <div class="arr">
-                            <a href='/filter?page=1&orderBy=Percentage&order=asc' <% if(order!='desc' && orderBy=='Percentage'
-                                ) { %> style="opacity:1" <% } %> class="up">&uarr;</a> <br>
+                            <a href='/filter?page=1&orderBy=Percentage&order=asc' <% if(order!='desc' &&
+                                orderBy=='Percentage' ) { %> style="opacity:1" <% } %> class="up">&uarr;</a> <br>
                             <a href='/filter?page=1&orderBy=Percentage&order=desc' <% if(order=='desc' &&
                                 orderBy=='Percentage' ) { %> style="opacity:1" <% } %> class="down">&darr;</a>
                         </div>
@@ -154,15 +156,6 @@
                 window.location.href = `/filter?page=1&month=${month}&orderBy=<%=orderBy%>&order=<%=order%>`;
             }
 
-            // function change(colId) {
-            //     var order;
-            //     if (req.query.order == 'desc') {
-            //         order = 'asc';
-            //     } else {
-            //         order = 'desc';
-            //     }
-            //     window.location.href = `/?page=1&orderBy=${colId}&order=${order}`;
-            // }
         </script>
 </body>
 
