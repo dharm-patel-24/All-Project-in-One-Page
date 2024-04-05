@@ -157,12 +157,6 @@
                     <span class="error" style="color: red; font-size: small;"></span>
 
                     <br>
-                    <label for="city">City</label>
-                    <select name="city" id="city">
-                        <option value="">Select City</option>
-                    </select>
-                    <span class="error" style="color: red; font-size: small;"></span>
-                    <br><br>
                     <% item && item.Basic_Detail_v[0].gender=="male" ? 'checked' : '' %>
                         <label for="gender">Gender</label>
                         <input type="radio" id="male" name="gender" class="gender" value="male" <%=item &&
@@ -180,6 +174,19 @@
                             <option value="">Select State</option>
                         </select>
                         <span class="error" style="color: red; font-size: small;"></span>
+                        <br><br>
+
+                        <label for="city">City</label>
+                        <select name="city" id="city">
+                            <option value="">Select City</option>
+                        </select>
+                        <span class="error" style="color: red; font-size: small;"></span>
+
+
+
+
+
+
                         <br><br>
                         <label for="relation">Relationship Status</label>
                         <select name="status" id="status">
@@ -382,7 +389,7 @@
                         <span class="wrong1" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
                         <label for="to">To</label>
-                        <input type="text" name="fTo[]" id="fTo"
+                        <input type="date" name="fTo[]" id="fTo"
                             value='<%= item ? item.Work_Experience_v[0].to_end : "" %>'>
                         <span class="wrong1" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
@@ -402,12 +409,12 @@
                         <span class="wrong2" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
                         <label for="from">From</label>
-                        <input type="text" name="fFrom[]" id="sFrom"
+                        <input type="date" name="fFrom[]" id="sFrom"
                             value='<%= item ? item.Work_Experience_v[1].start_from : "" %>'>
                         <span class="wrong2" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
                         <label for="to">To</label>
-                        <input type="text" name="fTo[]" id="sTo"
+                        <input type="date" name="fTo[]" id="sTo"
                             value='<%= item ? item.Work_Experience_v[1].to_end : "" %>'>
                         <span class="wrong2" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
@@ -427,12 +434,12 @@
                         <span class="wrong3" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
                         <label for="from">From</label>
-                        <input type="text" name="fFrom[]" id="tFrom"
+                        <input type="date" name="fFrom[]" id="tFrom"
                             value='<%= item ? item.Work_Experience_v[2].start_from : "" %>'>
                         <span class="wrong3" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
                         <label for="to">To</label>
-                        <input type="text" name="fTo[]" id="tTo"
+                        <input type="date" name="fTo[]" id="tTo"
                             value='<%= item ? item.Work_Experience_v[2].to_end : "" %>'>
                         <span class="wrong3" style="color: red; font-size: small;"></span>
                         &nbsp; &nbsp;
@@ -452,57 +459,57 @@
                 <fieldset style="width: 450px">
                     <legend>Language Known</legend>
                     <input type="hidden" name="hindihide" value="<%= item ? item.Language_Known_v[0].lang_id : '' %>">
-                    <input type="checkbox" name="hin" id="hin" value="hindi" <%=item &&
-                        item.Language_Known_v[0].language_name.includes('hindi') ? "checked" : "" %>>
+                    <input type="checkbox" name="hin" id="hin" onclick="checkboxdisabledhindi()" value="hindi" <%=item
+                        && item.Language_Known_v[0].language_name.includes('hindi') ? "checked" : "" %>>
                     <label for="hin"><b>Hindi</b></label>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <input type="checkbox" name="red" id="red" value="Yes" <%=item &&
+                    <input type="checkbox" name="red" id="red" disabled value="Yes" <%=item &&
                         item.Language_Known_v[0].read_.includes('Yes') ? "checked" : "" %>>
                     <label for="red">Read</label>
                     &nbsp; &nbsp;
-                    <input type="checkbox" name="wri" id="wri" value="Yes" <%=item &&
+                    <input type="checkbox" name="wri" id="wri" disabled value="Yes" <%=item &&
                         item.Language_Known_v[0].write_.includes('Yes') ? "checked" : "" %>>
                     <label for="wri">Write</label>
                     &nbsp; &nbsp;
-                    <input type="checkbox" name="sp" id="sp" value="Yes" <%=item &&
+                    <input type="checkbox" name="sp" id="sp" disabled value="Yes" <%=item &&
                         item.Language_Known_v[0].speak.includes('Yes') ? "checked" : "" %>>
                     <label for="sp">Speak</label>
 
                     <br><br>
 
                     <input type="hidden" name="enghide" value="<%= item ?item.Language_Known_v[1].lang_id : '' %>">
-                    <input type="checkbox" name="eng" id="eng" value="english" <%=item &&
-                        item.Language_Known_v[1].language_name.includes('english') ? "checked" : "" %>>
+                    <input type="checkbox" name="eng" id="eng" onclick="checkboxdisabledenglish()" value="english"
+                        <%=item && item.Language_Known_v[1].language_name.includes('english') ? "checked" : "" %>>
                     <label for="eng"><b>English</b></label>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <input type="checkbox" name="red1" id="red1" value="Yes" <%=item &&
+                    <input type="checkbox" name="red1" id="red1" disabled value="Yes" <%=item &&
                         item.Language_Known_v[1].read_.includes('Yes') ? "checked" : "" %>>
                     <label for="red1">Read</label>
                     &nbsp; &nbsp;
-                    <input type="checkbox" name="wri1" id="wri1" value="Yes" <%=item &&
+                    <input type="checkbox" name="wri1" id="wri1" disabled value="Yes" <%=item &&
                         item.Language_Known_v[1].write_.includes('Yes') ? "checked" : "" %>>
                     <label for="wri1">Write</label>
                     &nbsp; &nbsp;
-                    <input type="checkbox" name="sp1" id="sp1" value="Yes" <%=item &&
+                    <input type="checkbox" name="sp1" id="sp1" disabled value="Yes" <%=item &&
                         item.Language_Known_v[1].speak.includes('Yes') ? "checked" : "" %>>
                     <label for="sp1">Speak</label>
 
                     <br><br>
 
                     <input type="hidden" name="gujhide" value="<%= item ?item.Language_Known_v[2].lang_id : '' %>">
-                    <input type="checkbox" name="guj" id="guj" value="gujarati" <%=item &&
-                        item.Language_Known_v[2].language_name.includes('gujarati') ? "checked" : "" %>>
+                    <input type="checkbox" name="guj" id="guj" onclick="checkboxdisabledgujarati()" value="gujarati"
+                        <%=item && item.Language_Known_v[2].language_name.includes('gujarati') ? "checked" : "" %>>
                     <label for="guj"><b>Gujarati</b></label>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <input type="checkbox" name="red2" id="red2" value="Yes" <%=item &&
+                    <input type="checkbox" name="red2" id="red2" disabled value="Yes" <%=item &&
                         item.Language_Known_v[2].read_.includes('Yes') ? "checked" : "" %>>
                     <label for="red2">Read</label>
                     &nbsp; &nbsp;
-                    <input type="checkbox" name="wri2" id="wri2" value="Yes" <%=item &&
+                    <input type="checkbox" name="wri2" id="wri2" disabled value="Yes" <%=item &&
                         item.Language_Known_v[2].write_.includes('Yes') ? "checked" : "" %>>
                     <label for="wri2">Write</label>
                     &nbsp; &nbsp;
-                    <input type="checkbox" name="sp2" id="sp2" value="Yes" <%=item &&
+                    <input type="checkbox" name="sp2" id="sp2" disabled value="Yes" <%=item &&
                         item.Language_Known_v[2].speak.includes('Yes') ? "checked" : "" %>>
                     <label for="sp2">Speak</label>
 
@@ -516,19 +523,19 @@
                     <legend>Technology You Known</legend>
                     <input type="hidden" name="phphide"
                         value="<%= item ?item.Technologies_You_Know_v[0].tyk_id : '' %>">
-                    <input type="checkbox" name="php" id="php" value="php" <%=item &&
+                    <input type="checkbox" name="php" id="php" onclick="radiodisabledphp()" value="php" <%=item &&
                         item.Technologies_You_Know_v[0].tech_name.includes('php') ? "checked" : "" %>>
                     <label for="php"><b>PHP</b></label>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <input type="radio" name="tech" id="beg" class="tech" value="beginner" <%=item &&
+                    <input type="radio" name="tech" id="beg" disabled class="tech" value="beginner" <%=item &&
                         item.Technologies_You_Know_v[0].tech_ability=="beginner" ? 'checked' : '' %>>
                     <label for="beg">Beginner</label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech" id="med" class="tech" value="mediator" <%=item &&
+                    <input type="radio" name="tech" id="med" disabled class="tech" value="mediator" <%=item &&
                         item.Technologies_You_Know_v[0].tech_ability=="mediator" ? 'checked' : '' %>>
                     <label for="med">Mediator</label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech" id="exp" class="tech" value="expert" <%=item &&
+                    <input type="radio" name="tech" id="exp" disabled class="tech" value="expert" <%=item &&
                         item.Technologies_You_Know_v[0].tech_ability=="expert" ? 'checked' : '' %>>
                     <label for="exp">Expert</label>
 
@@ -536,19 +543,19 @@
 
                     <input type="hidden" name="mysqlhide"
                         value="<%= item ?item.Technologies_You_Know_v[1].tyk_id : ''%>">
-                    <input type="checkbox" name="mysql" id="mysql" value="mysql" <%=item &&
-                        item.Technologies_You_Know_v[1].tech_name.includes('mysql') ? "checked" : "" %>>
+                    <input type="checkbox" name="mysql" id="mysql" onclick="radiodisabledmysql()" value="mysql" <%=item
+                        && item.Technologies_You_Know_v[1].tech_name.includes('mysql') ? "checked" : "" %>>
                     <label for="mysql"><b>MySQL</b></label>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <input type="radio" name="tech1" class="tech1" id="beg1" value="beginner" <%=item &&
+                    <input type="radio" name="tech1" class="tech1" disabled id="beg1" value="beginner" <%=item &&
                         item.Technologies_You_Know_v[1].tech_ability=="beginner" ? 'checked' : '' %>>
                     <label for="beg1">Beginner</label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech1" class="tech1" id="med1" value="mediator" <%=item &&
+                    <input type="radio" name="tech1" class="tech1" disabled id="med1" value="mediator" <%=item &&
                         item.Technologies_You_Know_v[1].tech_ability=="mediator" ? 'checked' : '' %>>
                     <label for="med1">Mediator </label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech1" class="tech1" id="exp1" value="expert" <%=item &&
+                    <input type="radio" name="tech1" class="tech1" disabled id="exp1" value="expert" <%=item &&
                         item.Technologies_You_Know_v[1].tech_ability=="expert" ? 'checked' : '' %>>
                     <label for="exp1">Expert</label>
 
@@ -556,19 +563,19 @@
 
                     <input type="hidden" name="larahide"
                         value="<%= item ?item.Technologies_You_Know_v[2].tyk_id : '' %>">
-                    <input type="checkbox" name="lara" id="lara" value="laravel" <%=item &&
-                        item.Technologies_You_Know_v[2].tech_name.includes('laravel') ? "checked" : "" %>>
+                    <input type="checkbox" name="lara" id="lara" onclick="radiodisabledlaravel()" value="laravel"
+                        <%=item && item.Technologies_You_Know_v[2].tech_name.includes('laravel') ? "checked" : "" %>>
                     <label for="lara"><b>Laravel</b></label>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <input type="radio" name="tech2" class="tech2" id="beg2" value="beginner" <%=item &&
+                    <input type="radio" name="tech2" class="tech2" disabled id="beg2" value="beginner" <%=item &&
                         item.Technologies_You_Know_v[2].tech_ability=="beginner" ? 'checked' : '' %>>
                     <label for="beg2">Beginner</label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech2" class="tech2" id="med2" value="mediator" <%=item &&
+                    <input type="radio" name="tech2" class="tech2" disabled id="med2" value="mediator" <%=item &&
                         item.Technologies_You_Know_v[2].tech_ability=="mediator" ? 'checked' : '' %>>
                     <label for="med2">Mediator </label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech2" class="tech2" id="exp2" value="expert" <%=item &&
+                    <input type="radio" name="tech2" class="tech2" disabled id="exp2" value="expert" <%=item &&
                         item.Technologies_You_Know_v[2].tech_ability=="expert" ? 'checked' : '' %>>
                     <label for="exp2">Expert</label>
 
@@ -576,19 +583,19 @@
 
                     <input type="hidden" name="orahide"
                         value="<%= item ?item.Technologies_You_Know_v[3].tyk_id : '' %>">
-                    <input type="checkbox" name="ora" id="ora" value="oracle" <%=item &&
+                    <input type="checkbox" name="ora" id="ora" onclick="radiodisabledoracle()" value="oracle" <%=item &&
                         item.Technologies_You_Know_v[3].tech_name.includes('oracle') ? "checked" : "" %>>
                     <label for="ora"><b>Oracle</b></label>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <input type="radio" name="tech3" class="tech3" id="beg3" value="beginner" <%=item &&
+                    <input type="radio" name="tech3" class="tech3" disabled id="beg3" value="beginner" <%=item &&
                         item.Technologies_You_Know_v[3].tech_ability=="beginner" ? 'checked' : '' %>>
                     <label for="beg3">Beginner</label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech3" class="tech3" id="med3" value="mediator" <%=item &&
+                    <input type="radio" name="tech3" class="tech3" disabled id="med3" value="mediator" <%=item &&
                         item.Technologies_You_Know_v[3].tech_ability=="mediator" ? 'checked' : '' %>>
                     <label for="med3">Mediator </label>
                     &nbsp; &nbsp;
-                    <input type="radio" name="tech3" class="tech3" id="exp3" value="expert" <%=item &&
+                    <input type="radio" name="tech3" class="tech3" disabled id="exp3" value="expert" <%=item &&
                         item.Technologies_You_Know_v[3].tech_ability=="expert" ? 'checked' : '' %>>
                     <label for="exp3">Expert</label>
 
@@ -703,6 +710,7 @@
                         <br><br>
                         <span id="lasterror" style="color: red; font-size: small; margin-left: 355px;"></span>
                         <br>
+                        <h3 id="success" style="text-align: center;"></h3>
                         <input id="button" class="sub" type="submit" value="Submit">
                         <%}%>
             </div>

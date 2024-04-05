@@ -3,22 +3,34 @@ const hello = document.getElementsByClassName('tab');
 
 var current = 0;
 
-function next() {
+function page() {
     for (let i = 0; i < hello.length; i++) {
         hello[i].style.display = "none";
     }
-    console.log(current);
     hello[current].style.display = "block";
+}
+page();
+function next() {
     if (current == 0) {
         if (basicDetailValidation()) {
             if (current >= 0 && current < 6) {
                 current++;
             }
         }
-    }
-    else if (current == 1) {
-        console.log(educationDetailValidation());
+    } else if (current == 1) {
         if (educationDetailValidation()) {
+            if (current >= 0 && current < 6) {
+                current++;
+            }
+        }
+    } else if (current == 2) {
+        if (validation()) {
+            if (current >= 0 && current < 6) {
+                current++;
+            }
+        }
+    } else if (current == 5) {
+        if (referenceContactValidation()) {
             if (current >= 0 && current < 6) {
                 current++;
             }
@@ -28,11 +40,9 @@ function next() {
             current++;
         }
     }
-
-
-    console.log("Next", current);
+    console.log("Page", current);
+    page();
 }
-next();
 
 function previous() {
     if (current > 0 && current < 7) {
@@ -120,7 +130,7 @@ function removeFunction() {
 }
 
 function basicDetailValidation() {
-    var basicID = ['firstname', 'lastname', 'designation', 'email', 'phone', 'addressOne', 'addressTwo', 'city', 'gender', 'state', 'status', 'dob', 'pin'];
+    var basicID = ['firstname', 'lastname', 'designation', 'email', 'phone', 'addressOne', 'addressTwo', 'gender', 'state', 'city', 'status', 'dob', 'pin'];
 
     let res = basicValidation(basicID);
     if (res == true) {
@@ -156,13 +166,6 @@ function basicValidation(basicID) {
                 if (!(str.match(/^[0-9]+$/)) || str.length != 10) {
                     document.getElementsByClassName('error')[i].innerHTML = basicID[i] + " should be a number with 10 digits";
                     return (str.match(/^[0-9]+$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else if (basicID[i] == 'dob') {
-                if (!(str.match((/^(\d{1,2})-(\d{1,2})-(\d{4})$/)))) {
-                    document.getElementsByClassName('error')[i].innerHTML = basicID[i] + " should be in DD/MM/YYYY format";
-                    return (str.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/));
                 } else {
                     document.getElementsByClassName('error')[i].innerHTML = "";
                 }
@@ -221,10 +224,81 @@ function educationValidation(eduID) {
     return true;
 }
 
-function validation() {
-    var ID = ['refName', 'refNumber', 'refRelation', 'refName1', 'refNumber1', 'refRelation1', 'location', 'noticePeriod', 'expectedCTC', 'currentCTC', 'depart'];
+function referenceContactValidation() {
+    var refID = ['refName', 'refNumber', 'refRelation', 'refName1', 'refNumber1', 'refRelation1'];
 
-    // var ID = ['firstname', 'lastname', 'designation', 'email', 'phone', 'addressOne', 'addressTwo', 'city', 'gender', 'state', 'status', 'dob', 'pin', 'courseName', 'sscPassingYear', 'sscPercentage', 'acourseName', 'hscPassingYear', 'hscPercentage', 'beCourseName', 'bePassingYear', 'bePercentage', 'meCourseName', 'mePassingYear', 'mePercentage', 'refName', 'refNumber', 'refRelation', 'refName1', 'refNumber1', 'refRelation1', 'location', 'noticePeriod', 'expectedCTC', 'currentCTC', 'depart'];
+    let res = referenceValidation(refID);
+    if (res == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function referenceValidation(refID) {
+    let initial = 25;
+    for (i = 0; i < refID.length; i++) {
+        var str = document.getElementById(refID[i]).value;
+        if (!(str)) {
+            document.getElementsByClassName('error')[initial].innerHTML = `${refID[i]} should not be empty`;
+            return false;
+        } else if (refID[i] == 'refNumber') {
+            if (!(str.match(/^[0-9]+$/)) || str.length != 10) {
+                document.getElementsByClassName('error')[initial].innerHTML = refID[i] + " should be a number with 10 digits";
+                return (str.match(/^[0-9]+$/));
+            } else {
+                document.getElementsByClassName('error')[initial].innerHTML = "";
+            }
+        } else {
+            document.getElementsByClassName('error')[initial].innerHTML = "";
+        }
+        initial++;
+    }
+    return true;
+}
+
+function preferenceDetailValidation() {
+    var prefrenceID = ['location', 'noticePeriod', 'expectedCTC', 'currentCTC', 'depart'];
+
+    let res = preferenceValidation(prefrenceID);
+    if (res == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function preferenceValidation(prefrenceID) {
+    let initial = 31;
+    for (i = 0; i < prefrenceID.length; i++) {
+        var str = document.getElementById(prefrenceID[i]).value;
+        if (!(str)) {
+            document.getElementsByClassName('error')[initial].innerHTML = `${prefrenceID[i]} should not be empty`;
+            return false;
+        } else if (prefrenceID[i] == 'refNumber') {
+            if (!(str.match(/^[0-9]+$/)) || str.length != 10) {
+                document.getElementsByClassName('error')[initial].innerHTML = prefrenceID[i] + " should be a number with 10 digits";
+                return (str.match(/^[0-9]+$/));
+            } else {
+                document.getElementsByClassName('error')[initial].innerHTML = "";
+            }
+        } else if (prefrenceID[i] == 'noticePeriod' || prefrenceID[i] == 'expectedCTC' || prefrenceID[i] == 'currentCTC') {
+            if (!(str.match(/^[0-9]+$/))) {
+                document.getElementsByClassName('error')[initial].innerHTML = prefrenceID[i] + " should be a number";
+                return (str.match(/^[0-9]+$/));
+            } else {
+                document.getElementsByClassName('error')[initial].innerHTML = "";
+            }
+        } else {
+            document.getElementsByClassName('error')[initial].innerHTML = "";
+        }
+        initial++;
+    }
+    return true;
+}
+
+function validation() {
+    var ID = ['location', 'noticePeriod', 'expectedCTC', 'currentCTC', 'depart'];
 
     let res = another(ID);
     if (res == true) {
@@ -235,13 +309,10 @@ function validation() {
 }
 
 function another(ID) {
-    // var workId = ['fCompanyName', 'fDesignation', 'fFrom', 'fTo', 'sCompanyName', 'sDesignation', 'sFrom', 'sTo', 'tCompanyName', 'tDesignation', 'tFrom', 'tTo'];
-    // var workId = ['fCompanyName', 'sCompanyName', 'tCompanyName'];
     var vals1 = ['fDesignation', 'fFrom', 'fTo'];
     var vals2 = ['sDesignation', 'sFrom', 'sTo'];
     var vals3 = ['tDesignation', 'tFrom', 'tTo'];
     var strValue = document.getElementById('fCompanyName').value;
-    console.log(strValue);
     if (strValue != '') {
         for (let j = 0; j < vals1.length; j++) {
             var strData = document.getElementById(vals1[j]).value;
@@ -280,84 +351,126 @@ function another(ID) {
         }
     }
 
-    var newb = [];
-    newb = ID;
-    for (i = 0; i < ID.length; i++) {
-        var percent = /^(100(.0{1,2})?|([0-9]?0-9))$/;
-        if (ID[i] == "gender") {
-            const gender = document.getElementsByClassName("gender");
-            if (!(gender[0].checked) && !(gender[1].checked)) {
-                document.getElementsByClassName('errors')[0].innerHTML = "Please select Gender";
-                return gender[0];
-            } else {
-                document.getElementsByClassName('errors')[0].innerHTML = "";
-            }
-        } else {
-            var str = document.getElementById(ID[i]).value;
-            if (!(str)) {
-                document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should not be empty";
-                // document.getElementById('lasterror').innerHTML = ID[i] + " should not be empty";
-                return str;
-            } else if (ID[i] == 'email') {
-                if (!(str.match(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/))) {
-                    document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should be in proper format";
-                    return (str.match(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else if (ID[i] == 'phone' || ID[i] == 'refNumber' || ID[i] == 'refNumber1') {
-                if (!(str.match(/^[0-9]+$/)) || str.length != 10) {
-                    document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should be a number with 10 digits";
-                    return (str.match(/^[0-9]+$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else if (ID[i] == 'dob' || ID[i] == 'fFrom' || ID[i] == 'fTo' || ID[i] == 'sFrom' || ID[i] == 'sTo' || ID[i] == 'tFrom' || ID[i] == 'tTo') {
-                if (!(str.match((/^(\d{1,2})-(\d{1,2})-(\d{4})$/)))) {
-                    document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should be in DD/MM/YYYY format";
-                    return (str.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else if (ID[i] == 'pin') {
-                if (!(str.match(/^[0-9]+$/)) || str.length != 6) {
-                    document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should be a number with 6 digits";
-                    return (str.match(/^[0-9]+$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else if (ID[i] == 'sscPassingYear' || ID[i] == 'hscPassingYear' || ID[i] == 'bePassingYear' || ID[i] == 'mePassingYear') {
-                if (!(str.match(/^[0-9]+$/)) || str.length != 4) {
-                    document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should be a number with 4 digits";
-                    return (str.match(/^[0-9]+$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else if (ID[i] == 'sscPercentage' || ID[i] == 'hscPercentage' || ID[i] == 'bePercentage' || ID[i] == 'mePercentage') {
-                if (!(str.match(/^(100(\.0{1,2})?|([0-9]?[0-9](\.[0-9]{1,2})))$/))) {
-                    document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should be a number with float";
-                    return (str.match(/^(100(\.0{1,2})?|([0-9]?[0-9](\.[0-9]{1,2})))$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else if (ID[i] == 'noticePeriod' || ID[i] == 'expectedCTC' || ID[i] == 'currentCTC') {
-                if (!(str.match(/^[0-9]+$/))) {
-                    document.getElementsByClassName('error')[i].innerHTML = ID[i] + " should be a number";
-                    return (str.match(/^[0-9]+$/));
-                } else {
-                    document.getElementsByClassName('error')[i].innerHTML = "";
-                }
-            } else {
-                document.getElementsByClassName('error')[i].innerHTML = "";
-            }
-        }
-    }
+
     return true;
+}
+
+
+function checkboxdisabledhindi() {
+    let hindi = document.getElementById('hin');
+    if (!hindi.checked) {
+        document.getElementById('red').disabled = true;
+        document.getElementById('wri').disabled = true;
+        document.getElementById('sp').disabled = true;
+        document.getElementById('red').checked = false;
+        document.getElementById('wri').checked = false;
+        document.getElementById('sp').checked = false;
+    } else {
+        document.getElementById('red').disabled = false;
+        document.getElementById('wri').disabled = false;
+        document.getElementById('sp').disabled = false;
+    }
+}
+
+function checkboxdisabledenglish() {
+    let english = document.getElementById('eng');
+    if (!english.checked) {
+        document.getElementById('red1').disabled = true;
+        document.getElementById('wri1').disabled = true;
+        document.getElementById('sp1').disabled = true;
+        document.getElementById('red1').checked = false;
+        document.getElementById('wri1').checked = false;
+        document.getElementById('sp1').checked = false;
+    } else {
+        document.getElementById('red1').disabled = false;
+        document.getElementById('wri1').disabled = false;
+        document.getElementById('sp1').disabled = false;
+    }
+}
+
+function checkboxdisabledgujarati() {
+    let gujarati = document.getElementById('guj');
+    if (!gujarati.checked) {
+        document.getElementById('red2').disabled = true;
+        document.getElementById('wri2').disabled = true;
+        document.getElementById('sp2').disabled = true;
+        document.getElementById('red2').checked = false;
+        document.getElementById('wri2').checked = false;
+        document.getElementById('sp2').checked = false;
+    } else {
+        document.getElementById('red2').disabled = false;
+        document.getElementById('wri2').disabled = false;
+        document.getElementById('sp2').disabled = false;
+    }
+}
+
+function radiodisabledphp() {
+    let php = document.getElementById('php');
+    if (!php.checked) {
+        document.getElementById('beg').disabled = true;
+        document.getElementById('med').disabled = true;
+        document.getElementById('exp').disabled = true;
+        document.getElementById('beg').checked = false;
+        document.getElementById('med').checked = false;
+        document.getElementById('exp').checked = false;
+    } else {
+        document.getElementById('beg').disabled = false;
+        document.getElementById('med').disabled = false;
+        document.getElementById('exp').disabled = false;
+    }
+}
+
+function radiodisabledmysql() {
+    let mysql = document.getElementById('mysql');
+    if (!mysql.checked) {
+        document.getElementById('beg1').disabled = true;
+        document.getElementById('med1').disabled = true;
+        document.getElementById('exp1').disabled = true;
+        document.getElementById('beg1').checked = false;
+        document.getElementById('med1').checked = false;
+        document.getElementById('exp1').checked = false;
+    } else {
+        document.getElementById('beg1').disabled = false;
+        document.getElementById('med1').disabled = false;
+        document.getElementById('exp1').disabled = false;
+    }
+}
+
+function radiodisabledlaravel() {
+    let laravel = document.getElementById('lara');
+    if (!laravel.checked) {
+        document.getElementById('beg2').disabled = true;
+        document.getElementById('med2').disabled = true;
+        document.getElementById('exp2').disabled = true;
+        document.getElementById('beg2').checked = false;
+        document.getElementById('med2').checked = false;
+        document.getElementById('exp2').checked = false;
+    } else {
+        document.getElementById('beg2').disabled = false;
+        document.getElementById('med2').disabled = false;
+        document.getElementById('exp2').disabled = false;
+    }
+}
+
+function radiodisabledoracle() {
+    let oracle = document.getElementById('ora');
+    if (!oracle.checked) {
+        document.getElementById('beg3').disabled = true;
+        document.getElementById('med3').disabled = true;
+        document.getElementById('exp3').disabled = true;
+        document.getElementById('beg3').checked = false;
+        document.getElementById('med3').checked = false;
+        document.getElementById('exp3').checked = false;
+    } else {
+        document.getElementById('beg3').disabled = false;
+        document.getElementById('med3').disabled = false;
+        document.getElementById('exp3').disabled = false;
+    }
 }
 
 document.getElementById('form').addEventListener('submit', (event) => {
     event.preventDefault();
-    if (validation()) {
+    if (preferenceDetailValidation()) {
         let form = document.getElementById('form');
         let form_data = new FormData(form);
 
@@ -371,10 +484,9 @@ document.getElementById('form').addEventListener('submit', (event) => {
             }
         }
         xhr.send(new URLSearchParams(form_data));
+        document.getElementById("success").innerHTML = "Data Submitted Successfully!";
     }
     document.getElementById('lasterror').innerHTML = "";
-
-    // document.getElementById("form").reset(); 
 });
 
 console.log(document.getElementById('my-button'));

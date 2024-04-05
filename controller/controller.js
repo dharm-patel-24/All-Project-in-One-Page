@@ -119,7 +119,7 @@ const homePagePost = (req, res) => {
                     }
 
                     if ((result[0].createpass == req.body.pass) == true) {
-                        jwt.sign({ id: result[0].id }, 'secretKey', { expiresIn: '3000s' }, (err, token) => {
+                        jwt.sign({ id: result[0].id }, 'secretKey', { expiresIn: '30000s' }, (err, token) => {
 
                             res.cookie('token', token).send('Cookie-Parser');
                         });
